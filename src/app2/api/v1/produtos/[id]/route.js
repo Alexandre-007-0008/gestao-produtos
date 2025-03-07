@@ -29,7 +29,7 @@ async function teste() {
 
     const produtos = [{id: 1, nome: "LED", qtde: 20}, {id: 2, nome: "resistor", qtde: 5}]
     // await client.del('produtos') seria pra deletar um cache, porém talvez não precise, pois, quando dá um .set ele já sobrescreve. 
-    await client.set('produtos', JSON.stringify(produtos), {EX: 20});
+    await client.set('produtos', JSON.stringify(produtos), {EX: 300});
     return JSON.parse(await client.get('produtos'));
 }
 
@@ -37,6 +37,8 @@ teste().then ((res) => {
     console.log('produtos: ', res)
 
     setTimeout(async function(){
-        console.log("produtos depois de 350 segundos: ", JSON.parse(await client.get('produtos')))
+        console.log("produtos depois de 300 segundos: ", JSON.parse(await client.get('produtos')))
     }, 3000)
 })
+
+// o get, push e post, já tem aqui 

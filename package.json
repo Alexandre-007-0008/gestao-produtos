@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/nodemailer": "^6.4.17",
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "express": "^4.21.2",
@@ -16,15 +17,19 @@
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "jsx": "^0.9.89",
-    "mongoose": "^8.10.0",
+    "mongoose": "^8.12.1",
     "next": "15.1.7",
+    "next-auth": "^4.24.11",
+    "nodemailer": "^6.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "redis": "^4.7.0",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.8",

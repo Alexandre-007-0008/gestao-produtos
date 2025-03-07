@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import jsonwebtoken from 'jsonwebtoken'
+// import jsonwebtoken from 'jsonwebtoken'
 // import { jwtDecode }  from "jwt-decode"
 import { cookies } from 'next/headers'
 import {jwtVerify} from 'jose';
 
-const publicRoutes = ['/login']
+const publicRoutes = ['/login', '/auth/recuperar_senha', 'auth/nova_senha']
 
 export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname
