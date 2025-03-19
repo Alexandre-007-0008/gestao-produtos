@@ -4,7 +4,7 @@ const DB_HOST = 'localhost'
 const DB_NAME = 'aula_api'
 const DB_USER = 'admin'
 const DB_PASSWORD = 'admin'
-const DB_PORT = 33302
+const DB_PORT = 27017
 
 const CONNECTION_URL = `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
 

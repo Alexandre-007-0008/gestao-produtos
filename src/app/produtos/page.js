@@ -18,10 +18,10 @@ export default function Dashboard() {
 
       <ul>
         {
-          Produto.map((Produto, index) => {
+          PRODUTOS.map((Produto, index) => {
             return (
               <li key={index}>
-                <Link href={`/produtos/${produto.slug}`}>{produto.name}</Link>
+                <Link href={`/produtos/${PRODUTOS.slug}`}>{PRODUTOS.name}</Link>
               </li>
             )
           })

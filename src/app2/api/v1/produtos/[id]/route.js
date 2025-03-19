@@ -27,7 +27,7 @@ client.on('error', err => console.log('Redis Client Error', err));
 async function teste() {
     await client.connect();
 
-    const produtos = [{id: 1, nome: "LED", qtde: 20}, {id: 2, nome: "resistor", qtde: 5}]
+    const produtos = [{id: 1, nome: "LED", qtde: 20}, {id: 2, nome: "Resistor", qtde: 5}]
     // await client.del('produtos') seria pra deletar um cache, porém talvez não precise, pois, quando dá um .set ele já sobrescreve. 
     await client.set('produtos', JSON.stringify(produtos), {EX: 300});
     return JSON.parse(await client.get('produtos'));

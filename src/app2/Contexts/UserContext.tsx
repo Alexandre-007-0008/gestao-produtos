@@ -4,8 +4,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import jwtDecode from "jwt-decode"
-
+import { jwtDecode } from "jwt-decode"
 const UserContext = createContext<any>(null)
 export const useUser = () => useContext(UserContext)
 
@@ -18,7 +17,7 @@ export const UserProvider = ({ children }: any) => {
     console.log('UserContext login', login, senha)
 
     try {
-        const response = await axios.post('http://localhost:3000/api/v1/auth/login', {
+        const response = await axios.post('http://localhost:27017/api/v1/auth/login', {
             login: login,
             senha: senha
         })

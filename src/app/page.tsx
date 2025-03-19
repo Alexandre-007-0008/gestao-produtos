@@ -2,8 +2,8 @@
 'use client'
 
 import axios, { AxiosResponse } from 'axios'
-import { ProdutoType } from './types'
-import { redirect } from 'next/navigation'
+import { ProdutoType } from '../app2/types'
+// import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -11,8 +11,8 @@ export default function Home() {
   const [qtde, setQtde] = useState<number>(0)
 
   const carregarDados = async () => {
-    axios.get('http://localhost:3000/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
-    axios.get('http://localhost:3000/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
+    axios.get('http://localhost:27017/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
+    axios.get('http://localhost:27017/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
       setQtde(resp.data[0] ? resp.data[0].total : 0)
     })
 
@@ -23,7 +23,7 @@ export default function Home() {
   }, [])
 
   const removerProduto = async (id: string) => {
-    await axios.delete(`http://localhost:3000/api/v1/produtos/${id}`)
+    await axios.delete(`http://localhost:27017/api/v1/produtos/${id}`)
     carregarDados()
   }
 
