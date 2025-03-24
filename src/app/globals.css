@@ -141,5 +141,5 @@ form {
 }
 
 .text-car {
-  text-align: center;
+   text-align: center; /*centralizar o texto */
 }
