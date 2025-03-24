@@ -33,7 +33,7 @@ export default function Home() {
       <p><strong>Quantidade de produtos:</strong> {qtde}</p>
 
       <a href='/produtos/novo'>Cadastrar novo produto</a>
-
+      <p>comitou</p>
       <table>
         <thead>
           <tr>
