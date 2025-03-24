@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from 'axios'
 import { ProdutoType } from '../app2/types'
 // import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import "./globals.css"
 
 export default function Home() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
@@ -29,11 +30,24 @@ export default function Home() {
 
   return (
     <>
+      <div className="top-bar">
+        <div className="logo">Electronic's Place</div>
+        <div className="user-area">
+            <a  href="carrinho.html">
+                <img className="button-img button-img2"/>
+            </a>
+            <a href="/login">
+                <img className="button-img button-img1"/>
+            </a>
+        </div>
+      </div>
+      <div className="search-container">
+          <input type="text" placeholder="Pesquisar..."/>
+      </div>
       <h1>Produtos</h1>
       <p><strong>Quantidade de produtos:</strong> {qtde}</p>
 
       <a href='/produtos/novo'>Cadastrar novo produto</a>
-      <p>comitou</p>
       <table>
         <thead>
           <tr>
@@ -62,3 +76,4 @@ export default function Home() {
     </>
   )
 }
+
