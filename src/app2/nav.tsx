@@ -26,3 +26,9 @@ export default function Nav() {
     </nav>
   )
 }
+      {user &&
+          <p>Olá, usuário {user.id}</p>
+      }
+    </nav>
+  )
+}

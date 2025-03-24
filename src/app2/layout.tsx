@@ -37,3 +37,21 @@ export default function RootLayout({
     </html>
   );
 }
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <UserProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Nav />
+          {children}
+        </body>
+      </UserProvider>
+    </html>
+  );
+}
