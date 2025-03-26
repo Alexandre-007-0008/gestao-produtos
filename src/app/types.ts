@@ -10,3 +10,4 @@ export type ProdutoType = {
     valor?: number
     estoque?: number
 }
+//passar pra app(pra ficar numa pasta só)

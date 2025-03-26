@@ -51,10 +51,10 @@ body {
 .search-container {
   text-align: center;
   margin-top: 80px;
-}
-.search-container input[type="text"] {
+} 
+ .search-container input[type="text"] {
   width: 300px;
-  padding: 8px;
+ padding: 8px; 
   font-size: 16px;
 }
 .user-area {
@@ -284,3 +284,82 @@ button {
 .btn-primary:hover {
   background-color: #0051cc;
 }
+
+/* dropdown/ menu suspenso */
+/* Estilo para o botão principal (dropdown-toggle) */
+.dropdown-toggle {
+  background-color: #007bff; /* Azul */
+  color: white; /* Texto branco */
+  padding: 10px 20px; /* Espaçamento interno */
+  text-decoration: none; /* Remove sublinhado */
+  border: none; /* Sem borda */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer;
+}
+
+.dropdown-toggle:hover {
+  background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+}
+
+/* Estilo para o menu suspenso (dropdown-menu) */
+.dropdown-menu {
+  display: none; /* Inicialmente oculto */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0;
+  list-style-type: none;
+  margin-top: 5px;
+  min-width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Exibir o menu quando a classe 'show' for aplicada */
+.dropdown-menu.show {
+  display: block;
+}
+
+/* Estilo para os itens do menu */
+.dropdown-item {
+  padding: 10px 15px;
+  text-decoration: none; /* Remove sublinhado */
+  color: #333; /* Cor do texto */
+  display: block;
+}
+
+/* Efeito hover nos itens do menu */
+.dropdown-item:hover {
+  background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+  color: black; /* Cor do texto ao passar o mouse */
+}
+
+/* button de incremento */
+/* Estilos para o container */
+.counter-container {
+  display: flex; /* Alinha os itens horizontalmente */
+  align-items: center; /* Alinha os itens no centro verticalmente */
+  justify-content: center; /* Alinha os itens no centro horizontalmente */
+  gap: 10px; /* Espaço entre os botões e o número */
+}
+
+/* Estilos para os botões */
+.counter-button {
+  width: 40px; /* Largura fixa para os botões */
+  height: 40px; /* Altura fixa para os botões */
+  border-radius: 50%; /* Bordas arredondadas */
+  font-size: 20px; /* Tamanho da fonte dentro dos botões */
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Cor da fonte (branco) */
+  border: none; /* Remove a borda padrão dos botões */
+  cursor: pointer; /* Exibe o ponteiro quando passa sobre o botão */
+}
+
+/* Estilos para o número */
+.counter-display {
+  font-size: 24px; /* Tamanho da fonte do número exibido */
+  font-weight: bold; /* Número em negrito */
+  width: 40px; /* Largura do display do número */
+  text-align: center; /* Centraliza o número */
+}
+

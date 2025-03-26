@@ -2,13 +2,15 @@
 'use client'
 
 import axios, { AxiosResponse } from 'axios'
-import { ProdutoType } from '../app2/types'
+import { ProdutoType } from './types'
 // import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
+
 
 export default function Home() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
   const [qtde, setQtde] = useState<number>(0)
+  
 
   const carregarDados = async () => {
     axios.get('http://localhost:27017/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
@@ -34,7 +36,6 @@ export default function Home() {
           <meta charSet="UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>Electronic's Place</title>
-          
       </head>
       <body>
           <div className="top-bar">
@@ -49,24 +50,11 @@ export default function Home() {
               </div>
           </div>
           <div className="search-container">
-              <input type="text" placeholder="Pesquisar..."/>
-          </div>
+              <input style={{alignItems: 'center'}} type="text" placeholder="Pesquisar..."/>
+          </div>    
       </body>
-      <h1>Produtos</h1>
-      <p><strong>Quantidade de produtos:</strong> {qtde}</p>
-
-      <a href='/produtos/novo'>Cadastrar novo produto</a>
-
+    
       <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Valor</th>
-            <th>Estoque</th>
-            <th></th>
-          </tr>
-        </thead>
-
         <tbody>
           { produtos.map((p: ProdutoType) =>
             <tr key={p._id}>

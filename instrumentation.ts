@@ -1,4 +1,4 @@
-// import Usuario from '@/db/models/usuario'
+ import Usuario from '@/app/db/models/usuario'
 // import bcrypt from 'bcrypt'
 
 // Usuario.findOne({

@@ -161,25 +161,56 @@ import { signIn } from "next-auth/react"
 import Link from 'next/link'
  
 export default function Pagina() {
-
-  const { login } = useUser() 
+  const { login } = useUser()
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
- 
+    event.preventDefault() // Evita reload da página
     const formData = new FormData(event.currentTarget)
-    const loginUsuario = formData.get('login')
-    const senhaUsuario = formData.get('senha')
- 
+    const loginUsuario = formData.get('login') as string
+    const senhaUsuario = formData.get('senha') as string
+
+    if (!loginUsuario || !senhaUsuario) {
+      alert("Preencha todos os campos")
+      return
+    }
+
     try {
+      if (!login) {
+        console.error("Erro: função login não encontrada.")
+        return
+      }
+
       await login(loginUsuario, senhaUsuario)
-    } catch(e) {
+
+      // Teste também com NextAuth:
+      const result = await signIn("credentials", {
+        redirect: false,
+        login: loginUsuario,
+        password: senhaUsuario
+      })
+
+      if (result?.error) {
+        console.log("Erro de login:", result.error)
+        alert("Usuário inválido")
+      }
+    } catch (e) {
       console.log("Erro de login", e)
       alert("Usuário inválido")
     }
   }
- 
-  return (
+  return ( //ajeitar o formulário depois
+    <>
+      <div className="top-bar">
+      <div className="logo">Electronic's Place</div>
+        <div className="user-area">
+            <a  href="/carrinho">
+                <img className="button-img button-img2"/>
+            </a>
+            <a href="/login">
+                <img className="button-img button-img1"/>
+            </a>
+        </div>
+      </div>
     <form onSubmit={handleSubmit}>
       <input type="login" name="login" placeholder="login" required autoFocus />
       <input type="password" name="senha" placeholder="senha" required />
@@ -193,6 +224,7 @@ export default function Pagina() {
 
       <button type="button" onClick={() => signIn("google", { redirectTo: "/" })}>Faça login com o Google</button>
     </form>
+  </>  
   )
 }
 

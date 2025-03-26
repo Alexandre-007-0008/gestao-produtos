@@ -1,7 +1,7 @@
 'use server'
 
-import Produto from "@/db/models/produto"
-import { ProdutoType } from "../types"
+import Produto from "@/app/db/models/produto"
+import { ProdutoType } from "../../app/types"
 import { redirect } from "next/navigation"
 
 export async function cadastrarProduto(data: FormData) {

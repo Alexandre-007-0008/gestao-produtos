@@ -12,8 +12,13 @@ export default function Pagina() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault() //previne o recarregamento da página 
     const formData = new FormData(event.currentTarget)
-    const loginUsuario = formData.get('login')
-    const senhaUsuario = formData.get('senha')
+    const loginUsuario = formData.get('login') as string || null
+    const senhaUsuario = formData.get('senha') as string || null
+
+    if (!loginUsuario || !senhaUsuario) {
+      alert("Por favor, preencha os campos de login e senha.")
+      return
+    }
  
     try {
       await login(loginUsuario, senhaUsuario)
