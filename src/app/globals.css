@@ -20,17 +20,20 @@ nav {
   background-color: #f0f0f0;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* a partir daqui é adicionado das páginas que eu fiz */
+html, body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
+<<<<<<< HEAD
 
 /* adicionei a partir daqui */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
+=======
+>>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
 .top-bar {
   background-color: green;
   width: 100%;
@@ -51,10 +54,17 @@ body {
 .search-container {
   text-align: center;
   margin-top: 80px;
+<<<<<<< HEAD
 } 
  .search-container input[type="text"] {
   width: 300px;
  padding: 8px; 
+=======
+}
+.search-container input[type="text"] {
+  width: 300px;
+  padding: 8px;
+>>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
   font-size: 16px;
 }
 .user-area {
@@ -95,6 +105,7 @@ body {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpuSIXINMWa-reBrgX9wlyL6mcYoVrhqUPIg&s");
 }
 
+<<<<<<< HEAD
 
 body {
   margin: 0;
@@ -126,6 +137,13 @@ body {
   padding: 8px;
   font-size: 16px;
 }
+=======
+#login-container {
+  width: 100%;
+  max-width: 360px;
+}
+
+>>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
 .user-area {
   position: absolute;
   top: 10px;
@@ -163,6 +181,7 @@ body {
 .button-img2 {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpuSIXINMWa-reBrgX9wlyL6mcYoVrhqUPIg&s");
 }
+<<<<<<< HEAD
 
 .center {
   text-align: center;
@@ -181,11 +200,14 @@ body {
   max-width: 360px;
 }
 
+=======
+>>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
 form {
   width: 400px;  /* Largura maior */
   padding: 20px; /* Espaçamento interno */
   border: 4px red; /* Opcional: Adiciona uma borda */
   border-radius: 8px; /* Cantos arredondados */
+<<<<<<< HEAD
 }
 
 /* css do formulário */
@@ -363,3 +385,12 @@ button {
   text-align: center; /* Centraliza o número */
 }
 
+=======
+  justify-content: center;
+  align-items: center;
+}
+
+.text-car {
+   text-align: center; /*centralizar o texto */
+}
+>>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
