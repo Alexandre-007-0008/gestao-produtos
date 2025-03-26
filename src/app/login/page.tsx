@@ -203,14 +203,12 @@ export default function Pagina() {
  
   return (
     <>
-      <html lang="en"/>
       <head>
           <meta charSet="UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>Nova-senha</title>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
       </head>
-      <body>
         <div className="top-bar">
             <div className="logo">Electronic's Place</div>
             <div className="user-area">
@@ -244,10 +242,7 @@ export default function Pagina() {
                   <br/>
                   <button className="btn btn-primary w-100 py-2" type="submit">Sign in</button>
               </div>  
-          </form>
-      </body>
+         </form>
     </>
   )
 }
-
-//tava dizendo que falta uma function de login

@@ -78,13 +78,11 @@ export default function Pagina() {
  
   return (
     <>
-      <html lang="pt-br"/>
-      <head>
+      
           <meta charSet="UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>Electronic's Place</title>
-      </head>
-      <body>
+      
           <div className="top-bar">
               <div className="logo">Electronic's Place</div>
               <div className="user-area">
@@ -101,7 +99,6 @@ export default function Pagina() {
             <p>Você ainda não adicionou nenhum produto ao seu carrinho...</p>
             <a href="/produtos">Comece aqui</a>
           </div>
-      </body>
     </>
   )
 }

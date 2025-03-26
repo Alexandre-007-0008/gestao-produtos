@@ -32,7 +32,6 @@ export default function Home() {
 
   return (
     <>
-<<<<<<< HEAD
       <html lang="pt-br"/>
       <head>
           <meta charSet="UTF-8"/>
@@ -56,26 +55,7 @@ export default function Home() {
           </div>    
       </body>
     
-=======
-      <div className="top-bar">
-        <div className="logo">Electronic's Place</div>
-        <div className="user-area">
-            <a  href="carrinho.html">
-                <img className="button-img button-img2"/>
-            </a>
-            <a href="/login">
-                <img className="button-img button-img1"/>
-            </a>
-        </div>
-      </div>
-      <div className="search-container">
-          <input type="text" placeholder="Pesquisar..."/>
-      </div>
-      <h1>Produtos</h1>
-      <p><strong>Quantidade de produtos:</strong> {qtde}</p>
 
-      <a href='/produtos/novo'>Cadastrar novo produto</a>
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
       <table>
         <tbody>
           { produtos.map((p: ProdutoType) =>

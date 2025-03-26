@@ -1,5 +1,5 @@
 
-import mongoose from '@/db/mongodb'
+import mongoose from '@/app/db/mongodb'
 
 const ProdutoSchema = new mongoose.Schema({
     nome: { type: String, required: true, index: true },

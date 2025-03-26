@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from "react"
-import { useUser } from "../app/Contexts/UserContext"
+import { useUser } from "./Contexts/UserContext"
 
 export default function Nav() {
   const { user, logout } = useUser()
@@ -20,12 +20,6 @@ export default function Nav() {
         </>
       }
 
-      {user &&
-          <p>Olá, usuário {user.id}</p>
-      }
-    </nav>
-  )
-}
       {user &&
           <p>Olá, usuário {user.id}</p>
       }
