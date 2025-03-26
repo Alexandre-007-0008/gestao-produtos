@@ -2,12 +2,13 @@ import Link from "next/link"
 
 const PRODUTOS = [
   {
-    name: 'Resistor', slug: 'resistor'
+    name: 'string', slug: 'string'
   },
   {
-    name: 'Multímetro', slug: 'multímetro',
+    name: 'string', slug: 'string',
   }
 ]
+
 
 export default function Dashboard() {
   return (

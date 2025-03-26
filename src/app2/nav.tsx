@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from "react"
-import { useUser } from "./Contexts/UserContext"
+import { useUser } from "../app/Contexts/UserContext"
 
 export default function Nav() {
   const { user, logout } = useUser()

@@ -29,6 +29,29 @@ export default function Home() {
 
   return (
     <>
+      <html lang="pt-br"/>
+      <head>
+          <meta charSet="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>Electronic's Place</title>
+          
+      </head>
+      <body>
+          <div className="top-bar">
+              <div className="logo">Electronic's Place</div>
+              <div className="user-area">
+                  <a  href="/carrinho">
+                      <img className="button-img button-img2"/>
+                  </a>
+                  <a href="/login">
+                      <img className="button-img button-img1"/>
+                  </a>
+              </div>
+          </div>
+          <div className="search-container">
+              <input type="text" placeholder="Pesquisar..."/>
+          </div>
+      </body>
       <h1>Produtos</h1>
       <p><strong>Quantidade de produtos:</strong> {qtde}</p>
 

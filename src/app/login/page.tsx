@@ -1,67 +1,172 @@
 // 'use client'
 // import { FormEvent } from 'react'
-// import { useUser } from '../Contexts/UserContext'
- 
-// export default function Pagina() {
-
-//   const { login } = useUser()
-
-//   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-//     event.preventDefault()
- 
-//     const formData = new FormData(event.currentTarget)
-//     const loginUsuario = formData.get('login')
-//     const senhaUsuario = formData.get('senha')
- 
-//     await login(loginUsuario, senhaUsuario)
-//   }
- 
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input type="login" name="login" placeholder="login" required autoFocus />
-//       <input type="senha" name="senha" placeholder="senha" required />
-//       <button type="submit">Login</button>
-//     </form>
-//   )
-// }
-
-// import { useUser } from '../Contexts/UserContext'
+// import { useUser } from '../../app/Contexts/UserContext'
 
 // import { signIn } from "next-auth/react"
 // import Link from 'next/link'
 
-// const handleSubmit = ()
+
+ 
 // export default function Pagina() {
+
+//   const { login } = useUser() || {}
+
+//   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+//     event.preventDefault() //previne o recarregamento da página 
+//     const formData = new FormData(event.currentTarget)
+//     const loginUsuario = formData.get('login')
+//     const senhaUsuario = formData.get('password')
+ 
+//     try {
+//       await login(loginUsuario, senhaUsuario)
+//     } catch(e) {
+//       console.log("Erro de login", e)
+//       alert("Usuário inválido")
+//     }
+//   }
+ 
 //   return (
-//     <form onSubmit={handleSubmit}>
-//       <input type="login" name="login" placeholder="login" required autoFocus />
-//       <input type="password" name="senha" placeholder="senha" required />
-//       <button type="submit">Login</button>
+//     <>
+//       <div className="top-bar">
+//                 <div className="logo">Electronic's Place</div>
+//                 <div className="user-area">
+//                     <a  href="/carrinho">
+//                         <img className="button-img button-img2"/>
+//                     </a>
+//                     <a href="/login">
+//                         <img className="button-img button-img1"/>
+//                     </a>
+//                 </div>
+//         </div>
+//       <form onSubmit={handleSubmit}>
+//           <div id="login-container">
+//               <h2 className="h3 mb-3 fw-normal text-center">Please sign in</h2>
+      
+//               <div className="form-floating mb-2">
+//                   <input type="login" className="form-control" id="floatingInput" name="login" placeholder="" required autoFocus/>
+//                   <label htmlFor="floatingInput">Login</label>
+//               </div>
+      
+//               <div className="form-floating mb-2">
+//                   <input type="password" className="form-control" id="floatingPassword" name="password" placeholder="" required/>
+//                   <label htmlFor="floatingPassword">Password</label>
+//               </div>
+//               <div className="form-check text-start my-2">
+//                 <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
+//               </div>
+//           </div>    
+//         <button className="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+//         <button className="btn btn-primary w-100 py-2" type="button" onClick={() => signIn("google", { redirectTo: "/" })}>Faça login com o Google</button>
+//       </form>
+//     </>
+//   )
+// } 
 
-//       <br/>
+//segunda versão
 
-//       <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
-//       <hr/>
-//       <p>Ou</p>
-//       <button type="button" onClick={() => signIn("google", { redirectTo: "/" })}>Faça login com o Google</button>
-//     </form>
+// 'use client'
+
+// import { FormEvent } from 'react'
+// import { useUser } from '../../app/Contexts/UserContext'
+// import { signIn } from "next-auth/react"
+// import Link from 'next/link'
+
+// export default function Pagina() {
+//   const { login } = useUser()
+
+//   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+//     event.preventDefault() // Evita reload da página
+//     const formData = new FormData(event.currentTarget)
+//     const loginUsuario = formData.get('login') as string
+//     const senhaUsuario = formData.get('senha') as string
+
+//     if (!loginUsuario || !senhaUsuario) {
+//       alert("Preencha todos os campos")
+//       return
+//     }
+
+//     try {
+//       if (!login) {
+//         console.error("Erro: função login não encontrada.")
+//         return
+//       }
+
+//       await login(loginUsuario, senhaUsuario)
+
+//       // Teste também com NextAuth:
+//       const result = await signIn("credentials", {
+//         redirect: false,
+//         login: loginUsuario,
+//         password: senhaUsuario
+//       })
+
+//       if (result?.error) {
+//         console.log("Erro de login:", result.error)
+//         alert("Usuário inválido")
+//       }
+//     } catch (e) {
+//       console.log("Erro de login", e)
+//       alert("Usuário inválido")
+//     }
+//   }
+
+//   return (
+//     <>
+//       <div className="top-bar">
+//         <div className="logo">Electronic's Place</div>
+//         <div className="user-area">
+//           <a href="/carrinho">
+//             <img className="button-img button-img2" />
+//           </a>
+//           <a href="/login">
+//             <img className="button-img button-img1" />
+//           </a>
+//         </div>
+//       </div>
+
+//       <form onSubmit={handleSubmit}>
+//         <div id="login-container">
+//           <h2 className="h3 mb-3 fw-normal text-center">Please sign in</h2>
+
+//           <div className="form-floating mb-2">
+//             <input type="text" className="form-control" id="floatingInput" name="login" placeholder='' required autoFocus />
+//             <label htmlFor="floatingInput">Login</label>
+//           </div>
+
+//           <div className="form-floating mb-2">
+//             <input type="password" className="form-control" id="floatingPassword" name="senha" placeholder='' required />
+//             <label htmlFor="floatingPassword">Password</label>
+//           </div>
+
+//           <div className="form-check text-start my-2">
+//             <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
+//           </div>
+//         </div>
+
+//         <button className="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+//         <button className="btn btn-primary w-100 py-2" type="button" onClick={() => signIn("google", { redirectTo: "/" })}>
+//           Faça login com o Google
+//         </button>
+//       </form>
+//     </>
 //   )
 // }
 
 
 'use client'
 import { FormEvent } from 'react'
-import { useUser } from '../../app2/Contexts/UserContext'
+import { useUser } from '../Contexts/UserContext'
 
 import { signIn } from "next-auth/react"
 import Link from 'next/link'
  
 export default function Pagina() {
 
-  const { login } = useUser()
+  const { login } = useUser() 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault() //previne o recarregamento da página 
+    event.preventDefault()
+ 
     const formData = new FormData(event.currentTarget)
     const loginUsuario = formData.get('login')
     const senhaUsuario = formData.get('senha')
@@ -90,3 +195,5 @@ export default function Pagina() {
     </form>
   )
 }
+
+//tava dizendo que falta uma function de login

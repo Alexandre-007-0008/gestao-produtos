@@ -23,9 +23,22 @@ export default function Pagina() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" name="email" placeholder="email" required autoFocus />
-      <button type="submit">Solicitar nova senha</button>
-    </form>
+    <>
+         <div className="top-bar">
+                <div className="logo">Electronic's Place</div>
+                <div className="user-area">
+                    <a  href="/carrinho">
+                        <img className="button-img button-img2"/>
+                    </a>
+                    <a href="/login">
+                        <img className="button-img button-img1"/>
+                    </a>
+                </div>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input type="email" name="email" placeholder="email" required autoFocus />
+          <button type="submit">Solicitar nova senha</button>
+        </form>
+    </>
   )
 }

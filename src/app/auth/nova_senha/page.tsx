@@ -39,10 +39,23 @@ export default function Pagina() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="password" name="senha" placeholder="Sua nova senha" required autoFocus />
-      <input type="password" name="confirmacao_senha" placeholder="Confirme sua senha" required/>
-      <button type="submit">Alterar senha</button>
-    </form>
+    <>
+         <div className="top-bar">
+                <div className="logo">Electronic's Place</div>
+                <div className="user-area">
+                    <a  href="/carrinho">
+                        <img className="button-img button-img2"/>
+                    </a>
+                    <a href="/login">
+                        <img className="button-img button-img1"/>
+                    </a>
+                </div>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input type="password" name="senha" placeholder="Sua nova senha" required autoFocus />
+          <input type="password" name="confirmacao_senha" placeholder="Confirme sua senha" required/>
+          <button type="submit">Alterar senha</button>
+        </form>
+    </>
   )
 }

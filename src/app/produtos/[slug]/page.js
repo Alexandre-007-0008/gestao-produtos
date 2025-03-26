@@ -28,6 +28,48 @@ export async function generateMetadata({ params, searchParams }, parent) {
   
     return (
       <>
+        <div class="top-bar">
+        <div class="logo">Electronic's Place</div>
+        <div class="user-area">
+            <a  href="sigin.html">
+                <img class="button-img button-img2"/>
+            </a>
+            <a href="sigin.html">
+                <img class="button-img button-img1"/>
+            </a> 
+        </div>
+    </div>
+    <div class="search-container">
+        <input type="text" placeholder="Pesquisar..."/>
+    </div>
+
+    <div>
+        <a href="produto1.html">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzTYASyjkobHJGukdlKZLM-GJQTlng--ZDVg&s"/>
+        </a>
+
+        <a href="produto2.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzTYASyjkobHJGukdlKZLM-GJQTlng--ZDVg&s"/>
+
+        </a>
+
+        <a href="produto3.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWlLOhT0N6SzVEF0nHB83pwnHYwwM-kaUjqQ&s"/>
+        </a>
+
+        <a href="produto4.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN8I0nJE4JpaIo4xuxhfl76a7ZJKhdGrb48w&s"/>
+        </a>
+
+        <a href="produto5.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzTYASyjkobHJGukdlKZLM-GJQTlng--ZDVg&s"/>
+        
+        </a>
+
+        <a href="produto6.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzTYASyjkobHJGukdlKZLM-GJQTlng--ZDVg&s"/>
+        </a>
+    </div>
         Produto: { slug }
         <form>
           <input type="novo produto" name="login" placeholder="novo produto" required autoFocus />

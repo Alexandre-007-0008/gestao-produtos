@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+ <form onSubmit={handleSubmit}>
+       <input type="login" name="login" placeholder="login" required autoFocus />
+       <input type="password" name="senha" placeholder="senha" required />
+       <button type="submit">Login</button>
+
+       <br/>
+
+       <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
+       <hr/>
+       <p>Ou</p>
+
+       <button type="button" onClick={() => signIn("google", { redirectTo: "/" })}>Faça login com o Google</button>
+    </form> 
