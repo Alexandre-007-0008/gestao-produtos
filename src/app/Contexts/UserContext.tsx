@@ -1,5 +1,5 @@
 'use client'
-<<<<<<< HEAD
+
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -106,69 +106,69 @@ export const useUser = () => {
   }
   return context;
 };
-=======
 
-import { createContext, useContext, useState, useEffect } from 'react'
-import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
-import axios from 'axios'
-import { jwtDecode } from "jwt-decode"
-const UserContext = createContext<any>(null)
-export const useUser = () => useContext(UserContext)
 
-export const UserProvider = ({ children }: any) => {
-  const [user, setUser] = useState()
-  const [updatedAt, setUpdatedAt] = useState<Date>()
-  const router = useRouter()
+// import { createContext, useContext, useState, useEffect } from 'react'
+// import Cookies from 'js-cookie'
+// import { useRouter } from 'next/navigation'
+// import axios from 'axios'
+// import { jwtDecode } from "jwt-decode"
+// const UserContext = createContext<any>(null)
+// export const useUser = () => useContext(UserContext)
 
-  const login = async (login: string, senha: string) => {
-    console.log('UserContext login', login, senha)
+// export const UserProvider = ({ children }: any) => {
+//   const [user, setUser] = useState()
+//   const [updatedAt, setUpdatedAt] = useState<Date>()
+//   const router = useRouter()
 
-    try {
-        const response = await axios.post('http://localhost:27017/api/v1/auth/login', {
-            login: login,
-            senha: senha
-        })
+//   const login = async (login: string, senha: string) => {
+//     console.log('UserContext login', login, senha)
 
-        Cookies.set('session', response.data.token)
-        router.push('/')
+//     try {
+//         const response = await axios.post('http://localhost:27017/api/v1/auth/login', {
+//             login: login,
+//             senha: senha
+//         })
 
-        setUser(obterUsuarioToken(response.data.token))
-    } catch(e) {
-      router.push('/login')
-    }
-  }
+//         Cookies.set('session', response.data.token)
+//         router.push('/')
 
-  const logout = () => {
-    Cookies.remove('session')
-    setUser(undefined)
-    router.push('/')
-  }
+//         setUser(obterUsuarioToken(response.data.token))
+//     } catch(e) {
+//       router.push('/login')
+//     }
+//   }
 
-  const obterUsuarioToken = (token: string) => {
-    Cookies.set('session', token)
+//   const logout = () => {
+//     Cookies.remove('session')
+//     setUser(undefined)
+//     router.push('/')
+//   }
 
-    const jwt: any = jwtDecode(token)
-    return jwt.user
-  }
+//   const obterUsuarioToken = (token: string) => {
+//     Cookies.set('session', token)
 
-  useEffect(() => {
-    const token = Cookies.get('session')
-    if (!user && token) {
-        setUser(obterUsuarioToken(token))
-        setUpdatedAt(new Date())
-    }
-  }, [user])
+//     const jwt: any = jwtDecode(token)
+//     return jwt.user
+//   }
 
-  useEffect(() => {
-    console.debug('UserContext user', user)
-    console.debug('UserContext updatedAt', updatedAt)
-  }, [user, updatedAt])
+//   useEffect(() => {
+//     const token = Cookies.get('session')
+//     if (!user && token) {
+//         setUser(obterUsuarioToken(token))
+//         setUpdatedAt(new Date())
+//     }
+//   }, [user])
 
-  return (
-		<UserContext.Provider value={{ user, login, logout }}>
-			{children}
-		</UserContext.Provider>
-	)
-}
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
+//   useEffect(() => {
+//     console.debug('UserContext user', user)
+//     console.debug('UserContext updatedAt', updatedAt)
+//   }, [user, updatedAt])
+
+//   return (
+// 		<UserContext.Provider value={{ user, login, logout }}>
+// 			{children}
+// 		</UserContext.Provider>
+// 	)
+// }
+

@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-'use client'
-import { FormEvent } from 'react'
-import { useUser } from '../Contexts/UserContext'
 
-=======
 // 'use client'
 // import { FormEvent } from 'react'
 // import { useUser } from '../Contexts/UserContext'
@@ -59,33 +54,19 @@ import { useUser } from '../Contexts/UserContext'
 import { FormEvent } from 'react'
 import { useUser } from '../Contexts/UserContext'
 import '../globals.css';
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
-import { signIn } from "next-auth/react"
-import Link from 'next/link'
+
+//import { signIn } from "next-auth/react"
+//import Link from 'next/link'
  
 export default function Pagina() {
 
   const { login } = useUser() || {}
 
-<<<<<<< HEAD
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault() //previne o recarregamento da página 
     const formData = new FormData(event.currentTarget)
-    const loginUsuario = formData.get('login') as string || null
-    const senhaUsuario = formData.get('senha') as string || null
-
-    if (!loginUsuario || !senhaUsuario) {
-      alert("Por favor, preencha os campos de login e senha.")
-      return
-    }
-=======
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault() //previne o recarregamento da página 
-    const formData = new FormData(event.currentTarget)
-    const loginUsuario = formData.get('login')
-    const senhaUsuario = formData.get('senha')
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
+    const loginUsuario = formData.get('login') as string 
+    const senhaUsuario = formData.get('senha') as string 
  
     try {
       await login(loginUsuario, senhaUsuario)
@@ -97,25 +78,6 @@ export default function Pagina() {
  
   return (
     <>
-<<<<<<< HEAD
-            <div className="top-bar">
-                <div className="logo">Electronic's Place</div>
-                <div className="user-area">
-                    <a  href="/carrinho">
-                        <img className="button-img button-img2"/>
-                    </a>
-                    <a href="/login">
-                        <img className="button-img button-img1"/>
-                    </a>
-                </div>
-            </div>
-            <div className="center">
-                <p>Você ainda não adicionou nenhum produto ao seu carrinho...</p>
-                <a href="/produtos">Comece aqui</a>
-            </div>
-    </>
-    )
-=======
       <html lang="pt-br"/>
       <head>
           <meta charSet="UTF-8"/>
@@ -131,9 +93,9 @@ export default function Pagina() {
                   </a>
               </div>
           </div>
-          <div className="search-container">
+          <form className="search-container" onSubmit={handleSubmit}>
             <input type="text" placeholder="Pesquisar..."/>
-          </div>
+          </form>
 
           <div className="test-car">
             <p>Você ainda não adicionou nenhum produto ao seu carrinho...</p>
@@ -142,5 +104,4 @@ export default function Pagina() {
       </body>
     </>
   )
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
 }

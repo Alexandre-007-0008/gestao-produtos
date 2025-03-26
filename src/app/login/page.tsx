@@ -156,22 +156,14 @@
 'use client'
 import { FormEvent } from 'react'
 import { useUser } from '../Contexts/UserContext'
-<<<<<<< HEAD
-
-=======
 import "../globals.css"
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
+
 import { signIn } from "next-auth/react"
 import Link from 'next/link'
  
 export default function Pagina() {
-<<<<<<< HEAD
-  const { login } = useUser()
-=======
 
   const { login } = useUser() || {}
-
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault() // Evita reload da página
@@ -208,35 +200,6 @@ export default function Pagina() {
       alert("Usuário inválido")
     }
   }
-<<<<<<< HEAD
-  return ( //ajeitar o formulário depois
-    <>
-      <div className="top-bar">
-      <div className="logo">Electronic's Place</div>
-        <div className="user-area">
-            <a  href="/carrinho">
-                <img className="button-img button-img2"/>
-            </a>
-            <a href="/login">
-                <img className="button-img button-img1"/>
-            </a>
-        </div>
-      </div>
-    <form onSubmit={handleSubmit}>
-      <input type="login" name="login" placeholder="login" required autoFocus />
-      <input type="password" name="senha" placeholder="senha" required />
-      <button type="submit">Login</button>
-
-      <br/>
-
-      <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
-      <hr/>
-      <p>Ou</p>
-
-      <button type="button" onClick={() => signIn("google", { redirectTo: "/" })}>Faça login com o Google</button>
-    </form>
-  </>  
-=======
  
   return (
     <>
@@ -284,7 +247,6 @@ export default function Pagina() {
           </form>
       </body>
     </>
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
   )
 }
 
