@@ -32,13 +32,11 @@ export default function Home() {
 
   return (
     <>
-      <html lang="pt-br"/>
       <head>
           <meta charSet="UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>Electronic's Place</title>
       </head>
-      <body>
           <div className="top-bar">
               <div className="logo">Electronic's Place</div>
               <div className="user-area">
@@ -51,11 +49,9 @@ export default function Home() {
               </div>
           </div>
           <div className="search-container">
-              <input style={{alignItems: 'center'}} type="text" placeholder="Pesquisar..."/>
-          </div>    
-      </body>
-    
-
+              <input type="text" placeholder="Pesquisar..."/>
+              <p><strong>Quantidade:</strong>{qtde}</p>
+          </div>  
       <table>
         <tbody>
           { produtos.map((p: ProdutoType) =>

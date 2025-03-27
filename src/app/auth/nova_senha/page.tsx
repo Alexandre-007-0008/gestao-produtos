@@ -39,7 +39,6 @@ export default function Pagina() {
   }
 
   return (
-<<<<<<< HEAD
     <>
          <div className="top-bar">
                 <div className="logo">Electronic's Place</div>
@@ -58,12 +57,5 @@ export default function Pagina() {
           <button type="submit">Alterar senha</button>
         </form>
     </>
-=======
-    <form onSubmit={handleSubmit}>
-      <input type="password" name="senha" placeholder="Sua nova senha" required autoFocus />
-      <input type="password" name="confirmacao_senha" placeholder="Confirme sua senha" required/>
-      <button type="submit">Alterar senha</button>
-    </form>
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
   )
 }

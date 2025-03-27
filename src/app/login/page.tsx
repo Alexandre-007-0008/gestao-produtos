@@ -234,7 +234,7 @@ export default function Pagina() {
                       <label htmlFor="floatingPassword">Password</label>
                   </div>
                   
-                  <Link href='/auth/recuperar_senha/page.tsx'>Recuperar senha</Link>
+                  <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
                   <hr/>
                   <p>Ou</p>
 

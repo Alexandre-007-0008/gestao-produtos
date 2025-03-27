@@ -98,6 +98,7 @@ export default function Pagina() {
           <div className="test-car">
             <p>Você ainda não adicionou nenhum produto ao seu carrinho...</p>
             <a href="/produtos">Comece aqui</a>
+            <a href="/carrinho/login">carrinho logado</a>
           </div>
     </>
   )

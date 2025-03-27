@@ -9,7 +9,7 @@ import '../../globals.css' //dando erro aqui
 
 export default function Home() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
-  const [qtde, setQtde] = useState<number>(0)
+  const [qtde, setQtde] = useState(10)
 
 
   const carregarDados = async () => {
@@ -33,7 +33,10 @@ export default function Home() {
 
   // Função para aumentar o número
   const increase = () => {
-    setCount(count + 1) // Incrementa 1 ao número
+    if (count < qtde) {
+      setCount(count + 1) // Incrementa 1 ao número
+    }
+    
   }
 
   // Função para diminuir o número
@@ -56,11 +59,16 @@ export default function Home() {
             </a>
         </div>
         </div>
-        <div className="center">
-        <img src="https://m.media-amazon.com/images/I/61OeEf3jq+L._AC_UL320_.jpg"/>
-        <p>R$ 322,60</p>
-        <p>Freenove Placa de desenvolvimento BBC Micro:bit V2, blocos e código MicroPython, tutorial detalhado, projetos de exemplo, microbit</p>
-        <p><strong>Quantidade:</strong>{qtde}</p>
+        <div className="text-produto1">
+          <img className="img-produto" src="https://m.media-amazon.com/images/I/61OeEf3jq+L._AC_UL320_.jpg" alt="Produto" />
+          <div className="text-produto">
+            <p><strong>R$ 322,60</strong></p>
+            <p>Freenove Placa de desenvolvimento BBC Micro:bit V2, blocos e código MicroPython, tutorial detalhado, projetos de exemplo, microbit</p>
+            <p><strong>Marca:</strong> FREENOVE</p>
+            <p><strong>Capacidade de armazenamento da memória:</strong> 512KB</p>
+            <p><strong>Padrão de comunicação sem fio:</strong> 802.11b</p>
+            <p><strong>Quantidade:</strong>{count}</p>
+          </div>
 
         <div className="counter-container">
             {/* Botão de decremento */}
@@ -96,21 +104,4 @@ export default function Home() {
 }
 
 
-
-{/* <div className="top-bar">
-<div className="logo">Electronic's Place</div>
-<div className="user-area">
-    <a  href="/carrinho">
-        <img className="button-img button-img2"/>
-    </a>
-    <a href="/login">
-        <img className="button-img button-img1"/>
-    </a>
-</div>
-</div>
-<div className="center">
-<img src="https://m.media-amazon.com/images/I/61OeEf3jq+L._AC_UL320_.jpg"/>
-<p>R$ 322,60</p>
-<p>Freenove Placa de desenvolvimento BBC Micro:bit V2, blocos e código MicroPython, tutorial detalhado, projetos de exemplo, microbit</p>
-<p><strong>Qauntidade:</strong>{qtde}</p>
-</div> */}
+// ver depois pra adicionar o seguinte: mostrar o número de produtos disponíveis, que se alteraria quando o count mudasse

@@ -23,7 +23,6 @@ export default function Pagina() {
   }
 
   return (
-<<<<<<< HEAD
     <>
          <div className="top-bar">
                 <div className="logo">Electronic's Place</div>
@@ -41,11 +40,5 @@ export default function Pagina() {
           <button type="submit">Solicitar nova senha</button>
         </form>
     </>
-=======
-    <form onSubmit={handleSubmit}>
-      <input type="email" name="email" placeholder="email" required autoFocus />
-      <button type="submit">Solicitar nova senha</button>
-    </form>
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
   )
 }

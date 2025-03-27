@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -20,7 +20,7 @@
     "jsx": "^0.9.89",
     "jwt-decode": "^4.0.0",
     "mongoose": "^8.12.1",
-    "next": "^15.2.3",
+    "next": "^15.2.4",
     "next-auth": "^4.24.11",
     "nodemailer": "^6.10.0",
     "react": "^19.0.0",
