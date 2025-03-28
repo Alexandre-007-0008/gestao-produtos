@@ -5,9 +5,8 @@ export type UserType = {
 }
 
 export type ProdutoType = {
-    _id?: string
+    id?: number | string
     nome: string
     valor?: number
     estoque?: number
 }
-//passar pra app(pra ficar numa pasta só)

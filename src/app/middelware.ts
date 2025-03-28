@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-// import jsonwebtoken from 'jsonwebtoken'
-// import { jwtDecode }  from "jwt-decode"
+// import jsonwebtoken from 'jsonwebtoken' não está sendo usado
+// import { jwtDecode }  from "jwt-decode" não está sendo usado
 import { cookies } from 'next/headers'
 import {jwtVerify} from 'jose';
 

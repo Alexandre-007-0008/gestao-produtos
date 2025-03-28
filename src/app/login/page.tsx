@@ -157,7 +157,6 @@
 import { FormEvent } from 'react'
 import { useUser } from '../Contexts/UserContext'
 import "../globals.css"
-
 import { signIn } from "next-auth/react"
 import Link from 'next/link'
  
@@ -203,14 +202,13 @@ export default function Pagina() {
  
   return (
     <>
-      <head>
+      
           <meta charSet="UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <title>Nova-senha</title>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
-      </head>
         <div className="top-bar">
-            <div className="logo">Electronic's Place</div>
+            <div className="logo">Electronic's Place</div> {/*Colocar como link pra início */}
             <div className="user-area">
                 <a  href="/carrinho">
                     <img className="button-img button-img2"/>
@@ -225,12 +223,12 @@ export default function Pagina() {
                   <h2 className="h3 mb-3 fw-normal text-center">Please sign in</h2>
           
                   <div className="form-floating mb-2">
-                      <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                      <input type="email" name="login" className="form-control" id="floatingInput" placeholder="name@example.com"/>
                       <label htmlFor="floatingInput">Email address</label>
                   </div>
           
                   <div className="form-floating mb-2">
-                      <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                      <input type="password"  name="senha" className="form-control" id="floatingPassword" placeholder="Password"/>
                       <label htmlFor="floatingPassword">Password</label>
                   </div>
                   

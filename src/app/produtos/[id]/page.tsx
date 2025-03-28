@@ -84,7 +84,6 @@ import { ReactNode } from 'react'
 
 export async function generateMetadata({ params, searchParams }: any, parent: any) {
     const { slug } = await params
-
     const produto = await Produto.findOne({ slug })
   
     return {
@@ -95,8 +94,7 @@ export async function generateMetadata({ params, searchParams }: any, parent: an
   
   export default async function Page({ params }: any) : Promise<ReactNode> {
     const { slug } = await params
-  
-    const produto = await Produto.findOne({ slug })
+    const produto = await Produto.findOne({ slug }) 
 
     return (
       <>

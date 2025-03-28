@@ -14,8 +14,8 @@ export default function Home() {
   
 
   const carregarDados = async () => {
-    axios.get('http://localhost:27017/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
-    axios.get('http://localhost:27017/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
+    axios.get('http://localhost:3000/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
+    axios.get('http://localhost:3000/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
       setQtde(resp.data[0] ? resp.data[0].total : 0)
     })
 
@@ -25,8 +25,8 @@ export default function Home() {
     carregarDados()
   }, [])
 
-  const removerProduto = async (id: string) => {
-    await axios.delete(`http://localhost:27017/api/v1/produtos/${id}`)
+  const removerProduto = async (id: number | string) => {
+    await axios.delete(`http://localhost:3000/api/v1/produtos/${id}`)
     carregarDados()
   }
 
@@ -55,14 +55,14 @@ export default function Home() {
       <table>
         <tbody>
           { produtos.map((p: ProdutoType) =>
-            <tr key={p._id}>
-              <td><a href={`/produtos/${p._id}`}>{p.nome}</a></td>
+            <tr key={p.id}>
+              <td><a href={`/produtos/${p.id}`}>{p.nome}</a></td>
               <td>{p.valor}</td>
               <td>{p.estoque}</td>
               <td>
-                <a href={`/produtos/${p._id}/editar`}>Editar</a>
+                <a href={`/produtos/${p.id}/editar`}>Editar</a>
                 | 
-                <button onClick={() => removerProduto(p._id!)}>Remover</button>
+                <button onClick={() => removerProduto(p.id!)}>Remover</button>
               </td>
             </tr>
           ) }
