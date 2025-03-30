@@ -37,3 +37,15 @@ export async function GET() {
         return NextResponse.json({ message: 'Erro ao contar produtos', error: error.message }, { status: 500 });
     }
 }
+
+// export async function POST() {
+
+//     try {
+//         const resultado = await Produto.aggregate([{ $count: 'total' }]);
+//         const total = resultado.length > 0 ? resultado[0].total : 0;
+
+//         return NextResponse.json({ total });
+//     } catch (error) {
+//         return NextResponse.json({ message: 'Erro ao contar produtos', error: error.message }, { status: 500 });
+//     }
+// }

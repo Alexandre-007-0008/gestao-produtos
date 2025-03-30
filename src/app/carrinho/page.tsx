@@ -95,11 +95,11 @@ export default function Pagina() {
             <input type="text" placeholder="Pesquisar..."/>
           </form>
 
-          <div className="test-car">
+          <div className="text-car">
             <p>Você ainda não adicionou nenhum produto ao seu carrinho...</p>
-            <a href="/produtos">Comece aqui</a>
+            <a className="text-car a" href="/produtos">Comece aqui</a>
             <br></br>
-            <a href="/carrinho/login">carrinho logado</a>
+           <a href="/carrinho/login">carrinho logado</a> {/*  Tirar depois */}
           </div>
     </>
   )

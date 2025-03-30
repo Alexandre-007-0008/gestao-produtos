@@ -18,10 +18,18 @@
 import mongoose from '@/app/db/mongodb'
 import { Document, Query } from 'mongoose';
 
-interface ProdutoQuery extends Query<any, Document> {
-  _startTime?: number;
+interface Produto {
+  _id: string;
+  nome: string;
+  valor: number;
+  estoque: number;
+  // ... outras propriedades
 }
 
+
+interface ProdutoQuery extends Query<Produto[], Document> {
+  _startTime?: number;
+}
 const ProdutoSchema = new mongoose.Schema({
     nome: { type: String, required: true, index: true },
     valor: { type: Number, required: false },

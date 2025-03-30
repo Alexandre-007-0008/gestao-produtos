@@ -1,10 +1,11 @@
 
 'use client'
 
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import { ProdutoType } from './types'
-// import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
+
 import "./globals.css"
 
 
@@ -14,29 +15,24 @@ export default function Home() {
   
 
   const carregarDados = async () => {
-    axios.get('http://localhost:3000/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
-    axios.get('http://localhost:3000/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
+    axios.get<ProdutoType[]>('http://localhost:3000/api/v1/produtos').then((resp) => setProdutos(resp.data))
+    axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade').then((resp) => {
       setQtde(resp.data[0] ? resp.data[0].total : 0)
     })
-
   }
 
   useEffect(() => {
     carregarDados()
   }, [])
 
-  const removerProduto = async (id: number | string) => {
-    await axios.delete(`http://localhost:3000/api/v1/produtos/${id}`)
-    carregarDados()
-  }
+  const removerProduto = async (_id: number | string) => {
+    await axios.delete(`http://localhost:3000/api/v1/produtos/${_id}`);
+    carregarDados();
+    redirect('/produtos'); // Redireciona para a página de produtos após a remoção
+  };
 
   return (
     <>
-      <head>
-          <meta charSet="UTF-8"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <title>Electronic's Place</title>
-      </head>
           <div className="top-bar">
               <div className="logo">Electronic's Place</div>
               <div className="user-area">
@@ -50,25 +46,26 @@ export default function Home() {
           </div>
           <div className="search-container">
               <input type="text" placeholder="Pesquisar..."/>
-              <p><strong>Quantidade:</strong>{qtde}</p>
+              {/* <p><strong>Quantidade:</strong>{qtde}</p> */}
           </div>  
       <table>
-        <tbody>
-          { produtos.map((p: ProdutoType) =>
-            <tr key={p.id}>
-              <td><a href={`/produtos/${p.id}`}>{p.nome}</a></td>
+        <tbody className="lista">
+          {produtos.map((p: ProdutoType, index) =>
+            <tr key={p._id  || index}>
+      
+              <td><a href={`/api/v1/produtos/${p._id}`}>{p.name}</a></td>
               <td>{p.valor}</td>
-              <td>{p.estoque}</td>
-              <td>
-                <a href={`/produtos/${p.id}/editar`}>Editar</a>
-                | 
-                <button onClick={() => removerProduto(p.id!)}>Remover</button>
+              <td><p>Quantidade: {p.qtde}</p></td>
+              <td className="editar-remover">
+                <p><a className="editar-remover as" href={`/produtos/${p._id}/editar`}>Editar</a></p>
+                |
+                <button className="editar-remover button" onClick={() => removerProduto(p._id!)}>Remover</button>
               </td>
             </tr>
-          ) }
+            ) 
+          }
         </tbody>
       </table>
     </>
   )
 }
-

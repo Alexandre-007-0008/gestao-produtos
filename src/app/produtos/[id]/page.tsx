@@ -81,26 +81,56 @@
   
 import Produto from '@/app/db/models/produto'
 import { ReactNode } from 'react'
+import mongoose from 'mongoose'
+// interface Params {
+//   slug: string;
+// }
 
-export async function generateMetadata({ params, searchParams }: any, parent: any) {
-    const { slug } = await params
-    const produto = await Produto.findOne({ slug })
-  
-    return {
-      title: produto.nome,
-      description: `Página do produto ${produto.nome}`
+// ({ params, searchParams }: any, parent: any)
+export async function generateMetadata({ params }: { params: { id: string } }) {
+      const { id } = await params
+      const produto = await Produto.findById(id)
+
+      if (!produto) {
+        return {
+          title: "Produto não encontrado",
+          description: "Este produto não existe.",
+        };
+      }
+    
+      return {
+        title: produto.name,
+        description: `Página do produto ${produto.name}`
+      }
     }
-  }
   
   export default async function Page({ params }: any) : Promise<ReactNode> {
-    const { slug } = await params
-    const produto = await Produto.findOne({ slug }) 
+    const { id } = await params
+    const produto = await Produto.findById( id ) 
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return <div>ID inválido</div>; // Retorna um erro amigável caso o ID seja inválido
+  }
+
+    if (!produto) { // Verifique se o produto é null antes de renderizar
+      return <div>Carregando produto...</div>; // Mostra uma mensagem de carregamento ou outro indicador
+    }
     return (
       <>
-        <h1>{ produto.nome }</h1>
+          <div className="top-bar">
+              <div className="logo"><a href="/">Electronic's Place</a></div>
+              <div className="user-area">
+                  <a  href="/carrinho">
+                      <img className="button-img button-img2"/>
+                  </a>
+                  <a href="/login">
+                      <img className="button-img button-img1"/>
+                  </a>
+              </div>
+          </div>
+        <h1>{ produto.name }</h1>
         <p>Valor: R$ {produto.valor}</p>
-        <p>Estoque: {produto.estoque}</p>
+        <p>Estoque: {produto.qtde}</p>
       </>
     )
   }

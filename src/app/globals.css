@@ -6,6 +6,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --cor-principal: green;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,26 +16,32 @@
   }
 }
 
-nav {
-  padding: 15px 25px;
-  background-color: #f0f0f0;
-}
-
 /* a partir daqui é adicionado das páginas que eu fiz */
 html, body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-
-
-/* adicionei a partir daqui */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+nav {
+  /* text-align: end;
+  justify-content: end;
+  position:absolute;
+  right: 20px;
+  top:90px;
+  width:100%;
+  padding: 12px 250px; 
+  background-color: #ff0000;*/
+  z-index:10; 
+  position: absolute;
+  right: 200px;
+  top: 5%;
+  transform: translateY(-50%); /* Centraliza verticalmente */
+  background-color: var(--cor-principal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-left: 10px; /* Ajuste o espaçamento entre o carrinho e o nav */
 }
-
 .top-bar {
-  background-color: green;
+  background-color: var(--cor-principal);
   width: 100%;
   height: 60px;
   display: flex;
@@ -43,7 +50,17 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10; 
+  z-index: 5;
+}
+
+
+.user-area {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .logo {
   font-size: 24px;
@@ -51,29 +68,48 @@ body {
   font-weight: bold;
   text-align: center;
 }
-
-.search-container {
+/* .search-container {
+  position: absolute;
+  top: 15%;
   text-align: center;
-  margin-top: 80px;
-  justify-content: center;
-}
-
-.search-container input[type="text"] {
   width: 300px;
+  height:30px;
+  padding: 5px 10px;
+  background-color: #0051cc;
+}
+.search-container .input[type="text"] {
   padding: 8px;
   font-size: 16px;
-  display: block;
+  border-radius: 20px;
+  width: 300px;
+} */
+
+.search-container {
+  position: absolute;
+  top: 15%;
+  text-align: center;
+  width: 100%; /* Faz a div ocupar a largura total */
+  max-width: 400px; /* Define um limite máximo */
+  height: auto; /* Altura ajustável */
+  padding: 10px; /* Mais espaço interno */
+  display: flex; /* Usa flexbox para alinhar */
+  justify-content: center; /* Centraliza o input */
+}
+
+.search-container input[type="text"] { /* Corrigido o seletor */
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 10px;
+  width: 100%; /* Ocupará toda a largura da div */
+  max-width: 350px; /* Ajuste o tamanho máximo da barra */
+  border: 1px solid rgb(49, 42, 42);
+}
+
+.search-container input[type="text"]:focus {
+  border-color: 4px black; /* Muda os px da borda e a cor da borda ao focar */
 }
 
 /*div com os ícones de perfil e do carrinho de perfil */
-.user-area {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
 .user-area img {
   width: 40px;
   height: 40px;
@@ -99,7 +135,7 @@ body {
 .button-img1 {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz99b0-NLXelTn6aW-n1R1wKl53PKzt7xNOw&s");
 }
-
+/*salvar as imagens e salvar no projeto */
 .button-img2 {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpuSIXINMWa-reBrgX9wlyL6mcYoVrhqUPIg&s");
 }
@@ -220,6 +256,7 @@ button {
   font-weight: 400; /* Reduzindo a grossura do texto */
   cursor: pointer;
   margin-top: 10px;
+  /*border-radios: 32px; deixa arredondado as bordas*/
 }
 
 .btn-primary {
@@ -372,4 +409,94 @@ button {
   font-weight: bold; /* Número em negrito */
   width: 40px; /* Largura do display do número */
   text-align: center; /* Centraliza o número */
+}
+
+/* produtos */
+.central {
+  display: flex;
+  
+}
+
+.editar-remover {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.editar-remover a,
+.editar-remover button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: blue;
+  text-decoration: underline;
+}
+
+/* .editar-remover button {
+  margin-bottom: 10px;
+} */
+
+.editar-remover a:hover {
+  color: var(--cor-principal); /* Altera a cor quando passar o mouse */
+  text-decoration: none; /* Remove o sublinhado ao passar o mouse */
+}
+
+.editar-remover button:hover {
+  color: rgb(255, 0, 0); text-decoration: none; /* Remove o sublinhado ao passar o mouse */
+  text-decoration: none; /*remove o sublinhado ao passar o mouse */
+}
+
+.central {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 100px;
+  margin-left: 110px;
+}
+
+.central a {
+  flex: 1 1 calc(33.333% - 20px); /* Isso faz com que tenha 3 imagens por linha, com espaçamento */
+  display: block;
+}
+
+.central img {
+  width: 50%;
+  height: auto; /* Para que a imagem não distorça */
+  display: block; /* Remove o espaço embaixo das imagens */
+}
+
+/* Para telas menores, ajustando para 2 imagens por linha */
+@media (max-width: 768px) {
+  .central a {
+      flex: 1 1 calc(50% - 20px);
+  }
+}
+
+/* Para telas muito pequenas (como celulares), uma imagem por linha */
+@media (max-width: 480px) {
+  .central a {
+      flex: 1 1 100%;
+  }
+}
+
+/* carrinho não logado */
+
+.text-car {
+  margin-bottom: 50px;
+}
+
+.text-car a {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: blue;
+  text-decoration: underline;
+}
+
+.lista {
+  gap: 10px
 }

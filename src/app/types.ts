@@ -5,8 +5,8 @@ export type UserType = {
 }
 
 export type ProdutoType = {
-    id?: number | string
-    nome: string
+    _id?: string | undefined //perguntar a Luciano o motivo disso(reclamou do number e aceitou undefined)
+    name: string
     valor?: number
-    estoque?: number
+    qtde?: number
 }

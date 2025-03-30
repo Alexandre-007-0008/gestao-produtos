@@ -1,7 +1,7 @@
 
 'use client'
 
-import axios, { AxiosResponse } from 'axios'
+import axios,  { AxiosResponse } from 'axios' //Não consegui resolver esse erro
 import { ProdutoType } from '../../types'
 // import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -24,8 +24,8 @@ export default function Home() {
     carregarDados()
   }, [])
 
-  const removerProduto = async (id: string) => {
-    await axios.delete(`http://localhost:27017/api/v1/produtos/${id}`)
+  const removerProduto = async (_id: string) => {
+    await axios.delete(`http://localhost:27017/api/v1/produtos/${_id}`)
     carregarDados()
   }
 
@@ -60,7 +60,7 @@ export default function Home() {
         </div>
         </div>
         <div className="text-produto1">
-          <img className="img-produto" src="https://m.media-amazon.com/images/I/61OeEf3jq+L._AC_UL320_.jpg" alt="Produto" />
+          <img className="img-produto" src="/imagens/produto4.png" alt="Produto" />
           <div className="text-produto">
             <p><strong>R$ 322,60</strong></p>
             <p>Freenove Placa de desenvolvimento BBC Micro:bit V2, blocos e código MicroPython, tutorial detalhado, projetos de exemplo, microbit</p>
@@ -87,9 +87,9 @@ export default function Home() {
         <tbody>
           { produtos.map((p: ProdutoType) =>
             <tr key={p._id}>
-              <td><a href={`/produtos/${p._id}`}>{p.nome}</a></td>
+              <td><a href={`/produtos/${p._id}`}>{p.name}</a></td>
               <td>{p.valor}</td>
-              <td>{p.estoque}</td>
+              <td>{p.qtde}</td>
               <td>
                 <a href={`/produtos/${p._id}/editar`}>Editar</a>
                 | 

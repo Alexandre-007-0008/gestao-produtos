@@ -205,10 +205,9 @@ export default function Pagina() {
       
           <meta charSet="UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <title>Nova-senha</title>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
         <div className="top-bar">
-            <div className="logo">Electronic's Place</div> {/*Colocar como link pra início */}
+        <title><a href="/">Electronic's Place</a></title> {/*Colocar como link pra início */}
             <div className="user-area">
                 <a  href="/carrinho">
                     <img className="button-img button-img2"/>
