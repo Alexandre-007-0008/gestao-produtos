@@ -218,10 +218,10 @@ client.on('error', (err) => console.log('Redis Client Error', err))
 
 // Método GET para buscar um produto pelo ID
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query; // Obtém o ID do produto da URL
+  const { _id } = req.query; // Obtém o ID do produto da URL
 
   try {
-    if (!id) {
+    if (!_id) {
       return res.status(400).json({ message: 'ID do produto não fornecido' });
     }
 
@@ -230,7 +230,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
     let produtos = produtosCache ? JSON.parse(produtosCache) : [];
 
     // Buscando o produto pelo ID
-    const produto = produtos.find((e: any) => e._id === Number(id)); // ID esperado como número
+    const produto = produtos.find((e: any) => e._id === Number(_id)); // ID esperado como número
 
     if (!produto) {
       return res.status(404).json({ message: 'Produto não encontrado' });

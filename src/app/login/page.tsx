@@ -202,36 +202,34 @@ export default function Pagina() {
  
   return (
     <>
-      
-          <meta charSet="UTF-8"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
-        <div className="top-bar">
-        <title><a href="/">Electronic's Place</a></title> {/*Colocar como link pra início */}
-            <div className="user-area">
-                <a  href="/carrinho">
-                    <img className="button-img button-img2"/>
-                </a>
-                <a href="/login">
-                    <img className="button-img button-img1"/>
-                </a>
-            </div>
-          </div>
+          {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/> */}
+          <div className="top-bar">
+        <div className="logo">Electronic's Place</div>
+        <div className="user-area">
+          <a href="/carrinho">
+            <img className="button-img button-img2" />
+          </a>
+          <a href="/login">
+            <img className="button-img button-img1" />
+          </a>
+        </div>
+      </div>
+
           <form onSubmit={handleSubmit} id="form">
               <div id="login-container">
                   <h2 className="h3 mb-3 fw-normal text-center">Please sign in</h2>
           
                   <div className="form-floating mb-2">
-                      <input type="email" name="login" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                      <input type="email" name="login" className="form-control" id="floatingInput" placeholder=""/>
                       <label htmlFor="floatingInput">Email address</label>
                   </div>
           
                   <div className="form-floating mb-2">
-                      <input type="password"  name="senha" className="form-control" id="floatingPassword" placeholder="Password"/>
+                      <input type="password"  name="senha" className="form-control" id="floatingPassword" placeholder=""/>
                       <label htmlFor="floatingPassword">Password</label>
                   </div>
                   
-                  <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
+                  <Link href='/api/v1/auth/recuperar_senha'>Recuperar senha</Link>
                   <hr/>
                   <p>Ou</p>
 
@@ -240,12 +238,12 @@ export default function Pagina() {
                   <button className="btn btn-primary w-100 py-2" type="submit">Sign in</button>
               </div>  
          </form>
-         <div className="bottom-bar">
+         {/* <div className="bottom-bar">
         <div className="espaço">
           <a href="/fale-conosco">Fale conosco!</a>
           <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

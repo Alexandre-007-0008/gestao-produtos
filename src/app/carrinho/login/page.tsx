@@ -114,54 +114,110 @@
 
 // // // ver depois pra adicionar o seguinte: mostrar o número de produtos disponíveis, que se alteraria quando o count mudasse
 
-
+//esse tá mais simples, mas tá funcionando o botão
 'use client'
-import axios from 'axios'
+
+import axios, { AxiosResponse } from 'axios'
+import { ProdutoType } from '../../types'
+// import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import '../../globals.css' 
+import '../../globals.css' //dando erro aqui
 
 export default function Home() {
-  const [qtde, setQtde] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
+  const [produtos, setProdutos] = useState<ProdutoType[]>([])
+  const [qtde, setQtde] = useState(10)
+
 
   const carregarDados = async () => {
-    try {
-      const respQtde = await axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade');
-      const quantidade = respQtde.data[0]?.total ?? 0; 
-      console.log("Quantidade recebida:", quantidade); // 👈 Depuração
-      setQtde(quantidade);
-    } catch (error) {
-      console.error("Erro ao carregar quantidade:", error);
-    }
-  };
+    axios.get('http://localhost:27017/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
+    axios.get('http://localhost:27017/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
+      setQtde(resp.data[0] ? resp.data[0].total : 0)
+    })
+
+  }
 
   useEffect(() => {
-    carregarDados();
-  }, []);
+    carregarDados()
+  }, [])
 
+  const removerProduto = async (id: string) => {
+    await axios.delete(`http://localhost:27017/api/v1/produtos/${id}`)
+    carregarDados()
+  }
+
+  const [count, setCount] = useState(0)
+
+  // Função para aumentar o número
   const increase = () => {
-    setCount((prevCount) => {
-      console.log(`Tentando aumentar: ${prevCount} / Limite: ${qtde}`);
-      return prevCount < qtde ? prevCount + 1 : prevCount;
-    });
-  };
+    if (count < qtde) {
+      setCount(count + 1) // Incrementa 1 ao número
+    }
+    
+  }
 
+  // Função para diminuir o número
   const decrease = () => {
-    setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : prevCount));
-  };
-
-  if (qtde === 0) {
-    return <p>Carregando quantidade...</p>;
+    if (count > 0) {
+      setCount(count - 1) // Decrementa 1 ao número, mas não permite valores negativos
+    }
   }
 
   return (
     <>
-      <div className="counter-container">
-        <button onClick={decrease} className="counter-button">-</button>
-        <div className="counter-display">{count}</div>
-        <button onClick={increase} className="counter-button">+</button>
-      </div>
-      <p>Quantidade disponível: {qtde}</p>
+        <div className="top-bar">
+        <div className="logo">Electronic's Place</div>
+        <div className="user-area">
+            <a  href="/carrinho">
+                <img className="button-img button-img2"/>
+            </a>
+            <a href="/login">
+                <img className="button-img button-img1"/>
+            </a>
+        </div>
+        </div>
+        <div className="text-produto1">
+          <img className="img-produto" src="https://m.media-amazon.com/images/I/61OeEf3jq+L._AC_UL320_.jpg" alt="Produto" />
+          <div className="text-produto">
+            <p><strong>R$ 322,60</strong></p>
+            <p>Freenove Placa de desenvolvimento BBC Micro:bit V2, blocos e código MicroPython, tutorial detalhado, projetos de exemplo, microbit</p>
+            <p><strong>Marca:</strong> FREENOVE</p>
+            <p><strong>Capacidade de armazenamento da memória:</strong> 512KB</p>
+            <p><strong>Padrão de comunicação sem fio:</strong> 802.11b</p>
+            <p><strong>Quantidade:</strong>{count}</p>
+          </div>
+
+        <div className="counter-container">
+            {/* Botão de decremento */}
+            <button onClick={decrease} className="counter-button">-</button>
+
+            {/* Display do número */}
+            <div className="counter-display">
+              {count}
+            </div>
+
+            {/* Botão de incremento */}
+            <button onClick={increase} className="counter-button">+</button>
+          </div>
+          </div>
+      <table>
+        <tbody>
+          { produtos.map((p: ProdutoType) =>
+            <tr key={p._id}>
+              <td><a href={`/produtos/${p._id}`}>{p.name}</a></td>
+              <td>{p.valor}</td>
+              <td>{p.qtde}</td>
+              <td>
+                <a href={`/produtos/${p._id}/editar`}>Editar</a>
+                | 
+                <button onClick={() => removerProduto(p._id!)}>Remover</button>
+              </td>
+            </tr>
+          ) }
+        </tbody>
+      </table>
     </>
-  );
+  )
 }
+
+
+// ver depois pra adicionar o seguinte: mostrar o número de produtos disponíveis, que se alteraria quando o count mudasse

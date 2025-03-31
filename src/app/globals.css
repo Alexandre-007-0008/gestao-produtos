@@ -552,3 +552,8 @@ button {
   font-weight: bold;
   text-align: center;
 }
+
+
+.lista {
+  gap: 20px;
+}

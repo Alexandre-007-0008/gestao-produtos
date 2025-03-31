@@ -5,7 +5,7 @@ interface Produto {
   _id: string;
   name: string;
   description: string;
-  price: number;
+  valor: number;
 }
 
 export default function SearchBar() {

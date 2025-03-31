@@ -121,7 +121,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/api/v1/produtos/search/node.js"  ],
+, "src/app/api/v1/produtos/search/route.tsx"  ],
   "exclude": [
     "node_modules"
   ]

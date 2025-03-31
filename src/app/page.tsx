@@ -161,12 +161,12 @@ export default function Home() {
       {loading && <p>Carregando produtos...</p>}
       {error && <p>{error}</p>}
 
-      <table>
+      {/* <table>
         <tbody className="lista">
           {produtos.map((p: ProdutoType, index) =>
             <tr key={p._id || index}>
               <td><a href={`/api/v1/produtos/${p._id}`}>{p.name}</a></td>
-              <td>{p.valor}</td>
+              <td>R${p.valor}</td>
               <td><p>Quantidade: {p.qtde}</p></td>
               <td className="editar-remover">
                 <p><a className="editar-remover as" href={`/produtos/${p._id}/editar`}>Editar</a></p>
@@ -176,7 +176,22 @@ export default function Home() {
             </tr>
           )}
         </tbody>
-      </table>
+      </table> */}
+{/* dilema: a imagem quando pesquisa n aparece ou o contrário */}
+        <div className="produto-central">
+          {produtos.map((p: ProdutoType, index) => (
+            <div key={p._id || index} className="produto-card">
+              <a href={`/produtos/${p._id}`}>
+                <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
+              </a>
+              <div className="flex">
+                <p className="produto-nome">R${p.valor}</p>
+                <p className="produto-nome">{p.name}</p>
+                <p>Quantidade: {p.qtde}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
       <div className="bottom-bar">
         <div className="espaço">
@@ -184,7 +199,6 @@ export default function Home() {
           <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
         </div>
       </div>
-
     </>
   )
 }
