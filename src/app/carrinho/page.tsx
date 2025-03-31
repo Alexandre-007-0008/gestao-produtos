@@ -101,6 +101,7 @@ export default function Pagina() {
             <br></br>
            <a href="/carrinho/login">carrinho logado</a> {/*  Tirar depois */}
           </div>
+          
     </>
   )
 }

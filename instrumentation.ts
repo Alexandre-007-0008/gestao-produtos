@@ -1,5 +1,7 @@
- import Usuario from '@/app/db/models/usuario'
+// import Usuario from '@/db/models/usuario'
 // import bcrypt from 'bcrypt'
+
+console.log("iniciando instrumentations.ts")
 
 // Usuario.findOne({
 //     login: 'admin'

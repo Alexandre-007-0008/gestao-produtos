@@ -7,6 +7,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --cor-principal: green;
+  --cor-bottom: #525252;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -436,7 +437,7 @@ button {
   text-decoration: none; /* Remove o sublinhado ao passar o mouse */
 }
 
-.central {
+.produto-central {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -522,4 +523,32 @@ button {
 
 .display {
   display: flex;
+}
+
+/* nome e valor na página /produtos */
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.bottom-bar {
+  background-color: var(--cor-bottom);
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.espaço {
+  display:flex;
+  gap: 20px;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
 }

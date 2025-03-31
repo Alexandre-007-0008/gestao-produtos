@@ -68,86 +68,174 @@
 //   }
 // ]}
 
-'use client'
-import axios from 'axios'
-// import axios, {AxiosResponse} from 'axios'
-import { ProdutoType } from '../types'
-// import { redirect } from 'next/navigation'
-import { useState, useEffect } from 'react'
+// 'use client'
+// import axios from 'axios'
+// // import axios, {AxiosResponse} from 'axios'
+// import { ProdutoType } from '../types'
+// // import { redirect } from 'next/navigation'
+// import { useState, useEffect } from 'react'
+// import { AxiosResponse } from 'axios'
 
-// import Link from "next/link"
+// // import Link from "next/link"
 
-// interface Produto {
-//   _id: string,
-//   name: string,
-//   slug: string,
-//   valor: number
+// // interface Produto {
+// //   _id: string,
+// //   name: string,
+// //   slug: string,
+// //   valor: number
+// // }
+
+
+
+// export default function Dashboard() {
+//   const [qtde, setQtde] = useState<number>(0)
+//   const [produtos, setProdutos] = useState<ProdutoType[]>([]) // Inicializando com os dados default
+  
+
+//   const carregarDados = async () => {
+//     //Comentei pq tava dando erro no AxiosResponse(Module '"axios"' has no exported member 'AxiosResponse'.)
+
+//     // Carregar dados de produtos da API
+//     axios.get('http://localhost:27017/api/v1/produtos')
+//       .then((resp: AxiosResponse) => {
+//         setProdutos(resp.data) // Atualiza os produtos com os dados da API
+//       })
+
+//     // Carregar quantidade de produtos da API
+//     axios.get('http://localhost:27017/api/v1/relatorios/quantidade')
+//       .then((resp: AxiosResponse) => {
+//         setQtde(resp.data[0] ? resp.data[0].total : 0) // Atualiza a quantidade
+//       })
+
+//     axios.get<ProdutoType[]>(`http://localhost:3000/api/v1/produtos`).then((resp) => setProdutos(resp.data))
+//     axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade').then((resp) => {
+//       setQtde(resp.data[0] ? resp.data[0].total : 0)
+//     })
+//   }
+
+//   useEffect(() => {
+//     carregarDados() // Carregar os dados quando o componente for montado
+//   }, [])
+// //implementar o cache pra renderizar mais rápido
+//   return (
+//     <>
+//           <div className="top-bar">
+//               <div className="logo"><a href="/">Electronic's Place</a></div>
+//               <div className="user-area">
+//                   <a  href="/carrinho">
+//                       <img className="button-img button-img2"/>
+//                   </a>
+//                   <a href="/login">
+//                       <img className="button-img button-img1"/>
+//                   </a>
+//               </div>
+//           </div>
+//           <div className="container">
+//             <div className="search-container">
+//                 <input type="text" placeholder="Pesquisar..."/>
+//             </div>
+//             <div className="produto-central">
+//               {produtos.map((p: ProdutoType, index) => (
+//                 <div key={p._id || index} className="produto-card">
+//                   <a href={`/produtos/${p._id}`}>
+//                     <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
+//                   </a>
+//                   <p className="produto-nome">{p.name}</p>
+//                   <p className="produto-nome">R${p.valor}</p>
+//                   {/* <p className="produto-valor">R$ {p.valor.toFixed(2)}</p> o valor pode estar indefinido pq o axios tá dando  um erro de network? */}
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//     </> 
+//   )
 // }
 
 
 
-export default function Dashboard() {
-  const [qtde, setQtde] = useState<number>(0)
-  const [produtos, setProdutos] = useState<ProdutoType[]>([]) // Inicializando com os dados default
 
+
+'use client'
+import axios from 'axios';
+import { ProdutoType } from '../types';
+import { useState, useEffect } from 'react';
+
+export default function Dashboard() {
+  const [qtde, setQtde] = useState<number>(0);
+  const [produtos, setProdutos] = useState<ProdutoType[]>([]);
 
   const carregarDados = async () => {
-    //Comentei pq tava dando erro no AxiosResponse(Module '"axios"' has no exported member 'AxiosResponse'.)
+    // Carregar dados de produtos da API
+    axios.get<ProdutoType[]>('http://localhost:3000/api/v1/produtos')
+      .then((resp) => {
+        setProdutos(resp.data);  // Atualiza os produtos com os dados da API
+      });
 
-    //Carregar dados de produtos da API
-    // axios.get('http://localhost:27017/api/v1/produtos')
-    //   .then((resp: AxiosResponse) => {
-    //     setProdutos(resp.data) // Atualiza os produtos com os dados da API
-    //   })
+    // Carregar quantidade de produtos da API
+    axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade')
+      .then((resp) => {
+        setQtde(resp.data[0] ? resp.data[0].total : 0);  // Atualiza a quantidade
+      });
 
-    // // Carregar quantidade de produtos da API
-    // axios.get('http://localhost:27017/api/v1/relatorios/quantidade')
-    //   .then((resp: AxiosResponse) => {
-    //     setQtde(resp.data[0] ? resp.data[0].total : 0) // Atualiza a quantidade
-    //   })
+    // Essa linha abaixo pode ser redundante, mas caso precise:
+    axios.get<ProdutoType[]>('http://localhost:3000/api/v1/produtos')
+      .then((resp) => setProdutos(resp.data));
 
-    axios.get<ProdutoType[]>(`http://localhost:3000/api/v1/produtos`).then((resp) => setProdutos(resp.data))
-    axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade').then((resp) => {
-      setQtde(resp.data[0] ? resp.data[0].total : 0)
-    })
-  }
+    axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade')
+      .then((resp) => {
+        setQtde(resp.data[0] ? resp.data[0].total : 0);
+      });
+  };
 
   useEffect(() => {
-    carregarDados() // Carregar os dados quando o componente for montado
-  }, [])
-//implementar o cache pra renderizar mais rápido
+    carregarDados(); // Carregar os dados quando o componente for montado
+  }, []);
+
   return (
     <>
-          <div className="top-bar">
-              <div className="logo"><a href="/">Electronic's Place</a></div>
-              <div className="user-area">
-                  <a  href="/carrinho">
-                      <img className="button-img button-img2"/>
-                  </a>
-                  <a href="/login">
-                      <img className="button-img button-img1"/>
-                  </a>
+      <div className="top-bar">
+        <div className="logo"><a href="/">Electronic's Place</a></div>
+        <div className="user-area">
+          <a href="/carrinho">
+            <img className="button-img button-img2" />
+          </a>
+          <a href="/login">
+            <img className="button-img button-img1" />
+          </a>
+        </div>
+      </div>
+      <div className="container">
+        <div className="search-container">
+          <input type="text" placeholder="Pesquisar..." />
+        </div>
+        <div className="produto-central">
+          {produtos.map((p: ProdutoType, index) => (
+            <div key={p._id || index} className="produto-card">
+              <a href={`/produtos/${p._id}`}>
+                <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
+              </a>
+              <div className="flex">
+                <p className="produto-nome">R${p.valor}</p>
+                <p className="produto-nome">{p.name}</p>
               </div>
-          </div>
-          <div className="container">
-            <div className="search-container">
-                <input type="text" placeholder="Pesquisar..."/>
             </div>
-            <div className="central">
-              {produtos.map((p: ProdutoType, index) => (
-                <div key={p._id || index} className="produto-card">
-                  <a href={`/produtos/${p._id}`}>
-                    <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
-                  </a>
-                  <p className="produto-nome">{p.name}</p>
-                  {/* <p className="produto-valor">R$ {p.valor.toFixed(2)}</p> o valor pode estar indefinido pq o axios tá dando  um erro de network? */}
-                </div>
-              ))}
-            </div>
-          </div>
-    </> 
-  )
+          ))}
+        </div>
+      </div>
+      <div className="bottom-bar">
+        <div className="espaço">
+          <a href="/fale-conosco">Fale conosco!</a>
+          <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
+        </div>
+      </div>
+    </>
+  );
 }
+
+
+
+
+
 
 {/* <div>
     <div className="central">

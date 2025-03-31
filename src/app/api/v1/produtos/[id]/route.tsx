@@ -215,34 +215,62 @@ const client = redis.createClient({
 
 client.on('error', (err) => console.log('Redis Client Error', err))
 
-// Método GET para buscar um produto pelo name
+
+// Método GET para buscar um produto pelo ID
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
-    const { name } = req.query; // Obtém o nome do produto da URL
-  
-    try {
-      if (!name) {
-        return res.status(400).json({ message: 'Nome do produto não fornecido' });
-      }
-  
-      // Recuperando produtos existentes do cache
-      const produtosCache = await client.get('produtos');
-      let produtos = produtosCache ? JSON.parse(produtosCache) : [];
-  
-      // Buscando os produtos que contêm o nome pesquisado (case insensitive)
-      const produtosFiltrados = produtos.filter((e: any) =>
-        e.name.toLowerCase().includes((name as string).toLowerCase())
-      );
-  
-      if (produtosFiltrados.length === 0) {
-        return res.status(404).json({ message: 'Nenhum produto encontrado' });
-      }
-  
-      return res.status(200).json(produtosFiltrados); // Retorna os produtos encontrados
-    } catch (error) {
-      const errMsg = error instanceof Error ? error.message : 'Erro desconhecido';
-      res.status(500).json({ message: 'Erro ao buscar produtos', error: errMsg });
+  const { id } = req.query; // Obtém o ID do produto da URL
+
+  try {
+    if (!id) {
+      return res.status(400).json({ message: 'ID do produto não fornecido' });
     }
+
+    // Recuperando produtos existentes do cache
+    const produtosCache = await client.get('produtos');
+    let produtos = produtosCache ? JSON.parse(produtosCache) : [];
+
+    // Buscando o produto pelo ID
+    const produto = produtos.find((e: any) => e._id === Number(id)); // ID esperado como número
+
+    if (!produto) {
+      return res.status(404).json({ message: 'Produto não encontrado' });
+    }
+
+    return res.status(200).json(produto); // Retorna o produto encontrado
+  } catch (error) {
+    const errMsg = error instanceof Error ? error.message : 'Erro desconhecido';
+    res.status(500).json({ message: 'Erro ao buscar produto', error: errMsg });
   }
+}
+
+// Método GET para buscar um produto pelo name
+// export async function GET(req: NextApiRequest, res: NextApiResponse) {
+//     const { name } = req.query; // Obtém o nome do produto da URL
+  
+//     try {
+//       if (!name) {
+//         return res.status(400).json({ message: 'Nome do produto não fornecido' });
+//       }
+  
+//       // Recuperando produtos existentes do cache
+//       const produtosCache = await client.get('produtos');
+//       let produtos = produtosCache ? JSON.parse(produtosCache) : [];
+  
+//       // Buscando os produtos que contêm o nome pesquisado (case insensitive)
+//       const produtosFiltrados = produtos.filter((e: any) =>
+//         e.name.toLowerCase().includes((name as string).toLowerCase())
+//       );
+  
+//       if (produtosFiltrados.length === 0) {
+//         return res.status(404).json({ message: 'Nenhum produto encontrado' });
+//       }
+  
+//       return res.status(200).json(produtosFiltrados); // Retorna os produtos encontrados
+//     } catch (error) {
+//       const errMsg = error instanceof Error ? error.message : 'Erro desconhecido';
+//       res.status(500).json({ message: 'Erro ao buscar produtos', error: errMsg });
+//     }
+//   }
   
 
 // Método POST para criar um novo produto
@@ -314,3 +342,4 @@ export async function OPTIONS(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Allow', ['GET', 'POST', 'PUT'])
   res.status(405).json({ message: 'Método não permitido' })
 }
+

@@ -177,6 +177,14 @@ export default function Home() {
           )}
         </tbody>
       </table>
+
+      <div className="bottom-bar">
+        <div className="espaço">
+          <a href="/fale-conosco">Fale conosco!</a>
+          <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
+        </div>
+      </div>
+
     </>
   )
 }
