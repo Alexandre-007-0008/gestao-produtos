@@ -5,7 +5,7 @@ import axios,  { AxiosResponse } from 'axios' //Não consegui resolver esse erro
 import { ProdutoType } from '../../types'
 // import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import '../../globals.css' //dando erro aqui
+import '../../globals.css' 
 
 export default function Home() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
@@ -15,6 +15,10 @@ export default function Home() {
   const carregarDados = async () => {
     axios.get('http://localhost:27017/api/v1/produtos').then((resp: AxiosResponse) => setProdutos(resp.data))
     axios.get('http://localhost:27017/api/v1/relatorios/quantidade').then((resp: AxiosResponse) => {
+      setQtde(resp.data[0] ? resp.data[0].total : 0)
+    })
+    axios.get<ProdutoType[]>('http://localhost:3000/api/v1/produtos').then((resp) => setProdutos(resp.data))
+    axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade').then((resp) => {
       setQtde(resp.data[0] ? resp.data[0].total : 0)
     })
 
@@ -69,7 +73,7 @@ export default function Home() {
             <p><strong>Padrão de comunicação sem fio:</strong> 802.11b</p>
             <p><strong>Quantidade:</strong>{count}</p>
           </div>
-
+        <div className="display">
         <div className="counter-container">
             {/* Botão de decremento */}
             <button onClick={decrease} className="counter-button">-</button>
@@ -83,6 +87,7 @@ export default function Home() {
             <button onClick={increase} className="counter-button">+</button>
           </div>
           </div>
+          <button className="comprar"><a href={`/produtos`}></a>Comprar</button>
       <table>
         <tbody>
           { produtos.map((p: ProdutoType) =>
@@ -99,6 +104,7 @@ export default function Home() {
           ) }
         </tbody>
       </table>
+        </div>
     </>
   )
 }

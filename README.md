@@ -35,22 +35,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-<<<<<<< HEAD
 
- <form onSubmit={handleSubmit}>
-       <input type="login" name="login" placeholder="login" required autoFocus />
-       <input type="password" name="senha" placeholder="senha" required />
-       <button type="submit">Login</button>
-
-       <br/>
-
-       <Link href='/auth/recuperar_senha'>Recuperar senha</Link>
-       <hr/>
-       <p>Ou</p>
-
-       <button type="button" onClick={() => signIn("google", { redirectTo: "/" })}>Faça login com o Google</button>
-    </form> 
-=======
 # Ver erro detalhado no log(exemplo):cat /home/gpds/.npm/_logs/2025-03-24T16_29_37_844Z-debug.log
 
->>>>>>> 9ec52dba9bf82f30dbd1ecb27ba1e35d11e25b15
+Endereço IP atual ( 177.135.53.76/32 ) adicionado!
+Visite Network Access para modificar suas configurações.
+
+esses são os produtos que estão no banco, ou seja, nenhum.  
+Lista de Produtos: []

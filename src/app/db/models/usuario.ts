@@ -1,3 +1,5 @@
+import mongoose from 'mongoose'
+
 const UsuarioSchema = new mongoose.Schema({
     login: { type: String, required: true, index: true },
     email: { type: String, required: true, index: true },

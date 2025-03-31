@@ -82,55 +82,129 @@
 import Produto from '@/app/db/models/produto'
 import { ReactNode } from 'react'
 import mongoose from 'mongoose'
-// interface Params {
-//   slug: string;
-// }
+interface params {
+  slug: string;
+}
 
 // ({ params, searchParams }: any, parent: any)
-export async function generateMetadata({ params }: { params: { id: string } }) {
-      const { id } = await params
-      const produto = await Produto.findById(id)
+export async function generateMetadata({ params }: { params: { _id: string } }) {
+    try{
+
+      const { _id } = await params
+      const produto = await Produto.findById(_id)
 
       if (!produto) {
         return {
           title: "Produto não encontrado",
-          description: "Este produto não existe.",
-        };
+          description: "Este produto não existe."
+        }
       }
-    
       return {
         title: produto.name,
         description: `Página do produto ${produto.name}`
       }
-    }
+    }  catch (error) {
+      console.error('Erro ao gerar metadata para o produto:', error) // Log para depuração
+      return {
+        title: "Erro ao carregar produto",
+        description: "Ocorreu um erro ao carregar os dados do produto.",
+      }
+    }  
+}
   
   export default async function Page({ params }: any) : Promise<ReactNode> {
-    const { id } = await params
-    const produto = await Produto.findById( id ) 
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return <div>ID inválido</div>; // Retorna um erro amigável caso o ID seja inválido
-  }
-
-    if (!produto) { // Verifique se o produto é null antes de renderizar
-      return <div>Carregando produto...</div>; // Mostra uma mensagem de carregamento ou outro indicador
-    }
-    return (
-      <>
+    try {
+      const { _id } = params
+  
+      // Verifique se o ID é válido
+      if (!mongoose.Types.ObjectId.isValid(_id as string)) {
+        return <div>ID inválido</div>
+      }
+  
+      const produto = await Produto.findById(_id)
+  
+      if (!produto) {
+        return <div>Produto não encontrado</div>
+      }
+  
+      return (
+        <>
           <div className="top-bar">
-              <div className="logo"><a href="/">Electronic's Place</a></div>
-              <div className="user-area">
-                  <a  href="/carrinho">
-                      <img className="button-img button-img2"/>
-                  </a>
-                  <a href="/login">
-                      <img className="button-img button-img1"/>
-                  </a>
-              </div>
+            <div className="logo"><a href="/">Electronic's Place</a></div>
+            <div className="user-area">
+              <a href="/carrinho">
+                <img className="button-img button-img2" />
+              </a>
+              <a href="/login">
+                <img className="button-img button-img1" />
+              </a>
+            </div>
           </div>
-        <h1>{ produto.name }</h1>
-        <p>Valor: R$ {produto.valor}</p>
-        <p>Estoque: {produto.qtde}</p>
-      </>
-    )
+          <h1>{produto.name}</h1>
+          <p>Valor: R$ {produto.valor}</p>
+          <p>Estoque: {produto.qtde}</p>
+        </>
+      )
+    } catch (error) {
+      console.error('Erro ao carregar o produto:', error) // Log para depuração
+      return <div>Ocorreu um erro ao carregar os dados do produto.</div>
+    }
   }
+
+//tava assim antes(só pra não perder)
+
+//   import Produto from '@/app/db/models/produto'
+// import { ReactNode } from 'react'
+// import mongoose from 'mongoose'
+// interface params {
+//   slug: string;
+// }
+
+// // ({ params, searchParams }: any, parent: any)
+// export async function generateMetadata({ params }: { params: { id: string } }) {
+//       const { id } = await params
+//       const produto = await Produto.findById(id)
+
+//       if (!produto) {
+//         return {
+//           title: "Produto não encontrado",
+//           description: "Este produto não existe.",
+//         };
+//       }
+    
+//       return {
+//         title: produto.name,
+//         description: Página do produto ${produto.name}
+//       }
+//     }
+  
+//   export default async function Page({ params }: any) : Promise<ReactNode> {
+//     const { id } = await params
+//     const produto = await Produto.findById( id ) 
+
+//     if (!mongoose.Types.ObjectId.isValid(id)) {
+//       return <div>ID inválido</div>; // Retorna um erro amigável caso o ID seja inválido
+//   }
+
+//     if (!produto) { // Verifique se o produto é null antes de renderizar
+//       return <div>Carregando produto...</div>; // Mostra uma mensagem de carregamento ou outro indicador
+//     }
+//     return (
+//       <>
+//           <div className="top-bar">
+//               <div className="logo"><a href="/">Electronic's Place</a></div>
+//               <div className="user-area">
+//                   <a  href="/carrinho">
+//                       <img className="button-img button-img2"/>
+//                   </a>
+//                   <a href="/login">
+//                       <img className="button-img button-img1"/>
+//                   </a>
+//               </div>
+//           </div>
+//         <h1>{ produto.name }</h1>
+//         <p>Valor: R$ {produto.valor}</p>
+//         <p>Estoque: {produto.qtde}</p>
+//       </>
+//     )
+//   }

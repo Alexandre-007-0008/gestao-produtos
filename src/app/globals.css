@@ -68,21 +68,6 @@ nav {
   font-weight: bold;
   text-align: center;
 }
-/* .search-container {
-  position: absolute;
-  top: 15%;
-  text-align: center;
-  width: 300px;
-  height:30px;
-  padding: 5px 10px;
-  background-color: #0051cc;
-}
-.search-container .input[type="text"] {
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 20px;
-  width: 300px;
-} */
 
 .search-container {
   position: absolute;
@@ -94,6 +79,14 @@ nav {
   padding: 10px; /* Mais espaço interno */
   display: flex; /* Usa flexbox para alinhar */
   justify-content: center; /* Centraliza o input */
+  margin: 20px 0; /* Espaçamento entre a barra de pesquisa e os produtos */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .search-container input[type="text"] { /* Corrigido o seletor */
@@ -412,11 +405,6 @@ button {
 }
 
 /* produtos */
-.central {
-  display: flex;
-  
-}
-
 .editar-remover {
   display: flex;
   align-items: center;
@@ -444,8 +432,8 @@ button {
 }
 
 .editar-remover button:hover {
-  color: rgb(255, 0, 0); text-decoration: none; /* Remove o sublinhado ao passar o mouse */
-  text-decoration: none; /*remove o sublinhado ao passar o mouse */
+  color: rgb(255, 0, 0); 
+  text-decoration: none; /* Remove o sublinhado ao passar o mouse */
 }
 
 .central {
@@ -457,31 +445,51 @@ button {
   margin-left: 110px;
 }
 
-.central a {
-  flex: 1 1 calc(33.333% - 20px); /* Isso faz com que tenha 3 imagens por linha, com espaçamento */
+/* Cada produto será um card responsivo */
+.produto-card {
+  flex: 1 1 calc(33.333% - 20px); /* 3 por linha */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ajusta a imagem para ocupar um tamanho maior */
+.produto-card img {
+  width: 150px; /* Tamanho fixo da imagem */
+  height: auto;
+  border-radius: 10px;
   display: block;
 }
 
-.central img {
-  width: 50%;
-  height: auto; /* Para que a imagem não distorça */
-  display: block; /* Remove o espaço embaixo das imagens */
+/* Estilo do nome do produto */
+.produto-nome {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-/* Para telas menores, ajustando para 2 imagens por linha */
+/* Estilo do valor */
+.produto-valor {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsividade: 2 por linha em telas menores */
 @media (max-width: 768px) {
-  .central a {
-      flex: 1 1 calc(50% - 20px);
+  .produto-card {
+    flex: 1 1 calc(50% - 20px);
+    margin-top: 100px;
   }
 }
 
-/* Para telas muito pequenas (como celulares), uma imagem por linha */
+/* Responsividade: 1 por linha em telas menores */
 @media (max-width: 480px) {
-  .central a {
-      flex: 1 1 100%;
+  .produto-card {
+    flex: 1 1 100%;
+    margin-top: 100px;
   }
 }
-
 /* carrinho não logado */
 
 .text-car {
@@ -497,6 +505,21 @@ button {
   text-decoration: underline;
 }
 
-.lista {
-  gap: 10px
+
+.comprar {
+  background-color: rgb(255, 255, 255);
+  width:100px;
+  height:30px;
+  border: 2px solid rgb(33, 192, 1);
+
+}
+
+.comprar:hover {
+   background-color: rgb(0, 179, 0);
+   border: 2px solid rgb(0, 179, 0);
+   color: white;
+}
+
+.display {
+  display: flex;
 }
