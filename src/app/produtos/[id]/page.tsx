@@ -151,81 +151,165 @@
 //     }
 //   }
 
+//c
+// import Produto from '@/app/db/models/produto';
+// import { ReactNode } from 'react';
+// import mongoose from 'mongoose';
 
+// export default async function Page({ params }: any): Promise<ReactNode> {
+//   try {
+//     // Extrair o ID através do URL diretamente
+//     // Utilizando uma abordagem mais robusta
+//     const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+//     const pathSegments = pathname.split('/');
+//     const idFromPath = pathSegments[pathSegments.length - 1];
+    
+//     // Se não conseguir extrair do path, tente params
+//     let idParam = '';
+    
+//     try {
+//       // Trate params de forma segura sem acessar diretamente suas propriedades
+//       const paramsObj = await Promise.resolve(params);
+//       if (paramsObj && typeof paramsObj === 'object') {
+//         idParam = String(Object.values(paramsObj)[0] || '');
+//       }
+//     } catch (e) {
+//       console.error('Erro ao processar params:', e);
+//     }
+    
+//     // Use o ID do path ou do params, o que estiver disponível
+//     const id = idFromPath || idParam;
+    
+//     if (!id) {
+//       return <div>Parâmetro ID ausente</div>;
+//     }
+    
+//     const numericId = Number(id);
+//     if (isNaN(numericId)) {
+//       return <div>ID inválido</div>;
+//     }
+//     console.log("ID sendo buscado:", numericId, typeof numericId);
+//     await mongoose.connect(process.env.MONGODB_URI!);
+    
+//     // Extrair o ID e garantir que é uma string para corresponder ao formato no banco
+//     const idString = String(id);
+//     console.log("Buscando produto com ID:", idString);
 
-import Produto from '@/app/db/models/produto' 
-import { ReactNode } from 'react'
-import mongoose from 'mongoose'
+//     // Buscar o produto usando o ID como string
+//     const produto = await Produto.findOne({ id: idString });
 
+//     // const produto = await Produto.findOne({ id: numericId });
 
-interface Params {
-  _id: string;
-}
+//     console.log("Produto encontrado:", produto);
+//     const todosOsProdutos = await Produto.find({});
+//     console.log("Total de produtos:", todosOsProdutos.length);
+//     console.log("Primeiros produtos:", todosOsProdutos.slice(0, 2));
+    
+//     if (!produto) {
+//       return <div>Produto não encontrado</div>;
+//     }
+    
+//     return (
+//       <>
+//         <div className="top-bar">
+//           <div className="logo"><a href="/">Electronic's Place</a></div>
+//           <div className="user-area">
+//             <a href="/carrinho">
+//               <img className="button-img button-img2" alt="Carrinho" />
+//             </a>
+//             <a href="/login">
+//               <img className="button-img button-img1" alt="Login" />
+//             </a>
+//           </div>
+//         </div>
+//         <p>ID: {id}</p>
+//         <h1>{produto.name}</h1>
+//         <p>Valor: R$ {produto.valor}</p>
+//         <p>Estoque: {produto.qtde}</p>
+//         <div className="bottom-bar">
+//           <div className="espaço">
+//             <a href="/fale-conosco">Fale conosco!</a>
+//             <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
+//           </div>
+//         </div>
+//       </>
+//     );
+//   } catch (error) {
+//     console.error('Erro ao carregar o produto:', error);
+//     return <div>Ocorreu um erro ao carregar os dados do produto.</div>;
+//   }
+// }
 
-export async function generateMetadata({ params }: { params: Params }) {
+import Produto from '@/app/db/models/produto';
+import { ReactNode } from 'react';
+import mongoose from 'mongoose';
+
+export default async function Page({ params }: any): Promise<ReactNode> {
   try {
-    const { _id } = params;  // Verifique se está acessando o _id corretamente
-    const produto = await Produto.findById(_id);
+    // Extrair o ID através do URL diretamente
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+    const pathSegments = pathname.split('/');
+    const idFromPath = pathSegments[pathSegments.length - 1];
+    
+    let idParam = '';
+    try {
+      const paramsObj = await Promise.resolve(params);
+      if (paramsObj && typeof paramsObj === 'object') {
+        idParam = String(Object.values(paramsObj)[0] || '');
+      }
+    } catch (e) {
+      console.error('Erro ao processar params:', e);
+    }
+
+    const id = idFromPath || idParam;
+    
+    if (!id) {
+      return <div>Parâmetro ID ausente</div>;
+    }
+
+    const idString = String(id);
+    console.log("ID sendo buscado:", idString);  // Verifique o ID que está sendo buscado
+    
+    await mongoose.connect(process.env.MONGODB_URI!);
+    
+    // Verifique todos os produtos para ver o formato do ID
+    const todosOsProdutos = await Produto.find({});
+    console.log("Todos os produtos no banco:", todosOsProdutos);
+
+    // Buscar o produto usando o ID como string
+    const produto = await Produto.findOne({ id: idString });
+    console.log("Produto encontrado:", produto);
 
     if (!produto) {
-      return {
-        title: "Produto não encontrado",
-        description: "Este produto não existe."
-      }
+      return <div>Produto não encontrado</div>;
     }
-
-    return {
-      title: produto.name,
-      description: `Página do produto ${produto.name}`
-    }
-  } catch (error) {
-    console.error('Erro ao gerar metadata para o produto:', error);
-    return {
-      title: "Erro ao carregar produto",
-      description: "Ocorreu um erro ao carregar os dados do produto."
-    }
-  }
-}
-
-export default async function Page({ params }: { params: Params }) : Promise<ReactNode> {
-  try {
-    const { _id } = params;  // Acessando o _id corretamente
-
-    // Verifique se o ID é válido
-    // if (!mongoose.Types.ObjectId.isValid(_id as string)) {
-    //   return <div>ID inválido</div>;
-    // }
-
-    const produto = await Produto.findById(_id);
     
-
-    // if (!produto) {
-    //   return <div>Produto não encontrado</div>;
-    // }
-
     return (
       <>
         <div className="top-bar">
           <div className="logo"><a href="/">Electronic's Place</a></div>
           <div className="user-area">
             <a href="/carrinho">
-              <img className="button-img button-img2" />
+              <img className="button-img button-img2" alt="" />
             </a>
             <a href="/login">
-              <img className="button-img button-img1" />
+              <img className="button-img button-img1" alt="" />
             </a>
           </div>
         </div>
-        {/* <h1>{produto.name}</h1> */}
-        {/* <h2>{produto._id}</h2> */}
+        <div className="lista">
+        <img src={produto.img || `/imagens/produto${produto._id}.png`} alt={produto.name}/>
+        <h1><strong>{produto.name}</strong></h1>
         <p>Valor: R$ {produto.valor}</p>
         <p>Estoque: {produto.qtde}</p>
-        <div className="bottom-bar">
-        <div className="espaço">
-          <a href="/fale-conosco">Fale conosco!</a>
-          <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
+        <button className="adicionar"><a href={`/carrinho/${produto.id}`}>Adicionar ao carrinho</a></button>
         </div>
-      </div>
+        <div className="bottom-bar">
+          <div className="espaço">
+            <a href="/fale-conosco">Fale conosco!</a>
+            <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
+          </div>
+        </div>
       </>
     );
   } catch (error) {
@@ -233,6 +317,98 @@ export default async function Page({ params }: { params: Params }) : Promise<Rea
     return <div>Ocorreu um erro ao carregar os dados do produto.</div>;
   }
 }
+
+// import Produto from '@/app/db/models/produto' 
+// import { ReactNode } from 'react'
+// import mongoose from 'mongoose'
+// import { NextRequest } from 'next/server';
+
+
+// // interface Params {
+// //   id: number;
+// // }
+
+// type Params = { id: number };
+// // const { id } = params;
+
+// // export async function generateMetadata({ params }: { params: Params }) {
+//   export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+//     try {
+//       await mongoose.connect(process.env.MONGODB_URI!); // Conecta ao banco
+
+//       const id = Number(params.id);
+//    // Verifique se está acessando o _id corretamente
+//     const produto = await Produto.findById(id);
+
+//     if (!produto) {
+//       return {
+//         title: "Produto não encontrado",
+//         description: "Este produto não existe."
+//       }
+//     }
+
+//     return {
+//       title: produto.name,
+//       description: `Página do produto ${produto.name}`
+//     }
+//   } catch (error) {
+//     console.error('Erro ao gerar metadata para o produto:', error);
+//     return {
+//       title: "Erro ao carregar produto",
+//       description: "Ocorreu um erro ao carregar os dados do produto."
+//     }
+//   }
+// }
+
+// export default async function Page({ params }: { params: Params }) : Promise<ReactNode> {
+//   try {
+//     const { id } = params.id;  // Acessando o _id corretamente
+
+//     // // Verifique se o ID é válido
+//     // if (!mongoose.Types.ObjectId.isValid(id as number)) {
+//     //   return <div>ID inválido</div>;
+//     // }
+//     if (isNaN(id)) {
+//       return <div>ID inválido</div>;
+//     }
+
+//     const produto = await Produto.findById(id);
+    
+
+//     if (!produto) {
+//       return <div>Produto não encontrado</div>;
+//     }
+
+//     return (
+//       <>
+//         <div className="top-bar">
+//           <div className="logo"><a href="/">Electronic's Place</a></div>
+//           <div className="user-area">
+//             <a href="/carrinho">
+//               <img className="button-img button-img2" />
+//             </a>
+//             <a href="/login">
+//               <img className="button-img button-img1" />
+//             </a>
+//           </div>
+//         </div>
+//         {<h2>{produto.id}</h2>}
+//         {<h1>{produto.name}</h1>}
+//         <p>Valor: R$ {produto.valor}</p>
+//         <p>Estoque: {produto.qtde}</p>
+//         <div className="bottom-bar">
+//         <div className="espaço">
+//           <a href="/fale-conosco">Fale conosco!</a>
+//           <a href="/fale-conosco">Divulgue sua marca no nosso site!</a>
+//         </div>
+//       </div>
+//       </>
+//     );
+//   } catch (error) {
+//     console.error('Erro ao carregar o produto:', error);
+//     return <div>Ocorreu um erro ao carregar os dados do produto.</div>;
+//   }
+// }
 
 
 //tava assim antes(só pra não perder)

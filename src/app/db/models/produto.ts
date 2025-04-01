@@ -20,9 +20,12 @@ import { Document, Query } from 'mongoose';
 
 interface Produto {
   _id: string;
+  id: number; 
   name: string;
   valor: number;
   qtde: number;
+  img: string; 
+  imageId: number;
   // ... outras propriedades
 }
 
@@ -31,9 +34,12 @@ interface ProdutoQuery extends Query<Produto[], Document> {
   _startTime?: number;
 }
 const ProdutoSchema = new mongoose.Schema({
+    id: { type: String, required: true},
     name: { type: String, required: true, index: true },
     valor: { type: Number, required: false },
-    qtde: { type: Number, required: false }
+    qtde: { type: Number, required: false },
+    img: { type: String },
+    imageId: { type: Number }
   },
   {
     versionKey: false

@@ -178,13 +178,13 @@ export default function Dashboard() {
       });
 
     // Essa linha abaixo pode ser redundante, mas caso precise:
-    axios.get<ProdutoType[]>('http://localhost:3000/api/v1/produtos')
-      .then((resp) => setProdutos(resp.data));
+    // axios.get<ProdutoType[]>('http://localhost:3000/api/v1/produtos')
+    //   .then((resp) => setProdutos(resp.data));
 
-    axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade')
-      .then((resp) => {
-        setQtde(resp.data[0] ? resp.data[0].total : 0);
-      });
+    // axios.get<{ total: number }[]>('http://localhost:3000/api/v1/relatorios/quantidade')
+    //   .then((resp) => {
+    //     setQtde(resp.data[0] ? resp.data[0].total : 0);
+    //   });
   };
 
   useEffect(() => {

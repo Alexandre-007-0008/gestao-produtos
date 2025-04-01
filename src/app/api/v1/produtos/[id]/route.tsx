@@ -218,10 +218,10 @@ client.on('error', (err) => console.log('Redis Client Error', err))
 
 // Método GET para buscar um produto pelo ID
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  const { _id } = req.query; // Obtém o ID do produto da URL
+  const { id } = req.query; // Obtém o ID do produto da URL
 
   try {
-    if (!_id) {
+    if (!id) {
       return res.status(400).json({ message: 'ID do produto não fornecido' });
     }
 
@@ -230,7 +230,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
     let produtos = produtosCache ? JSON.parse(produtosCache) : [];
 
     // Buscando o produto pelo ID
-    const produto = produtos.find((e: any) => e._id === Number(_id)); // ID esperado como número
+    const produto = produtos.find((e: any) => e.id === Number(id)); // ID esperado como número
 
     if (!produto) {
       return res.status(404).json({ message: 'Produto não encontrado' });
@@ -284,7 +284,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
     // Criando novo produto
     const novoProduto = {
-      _id: produtos.length + 1,
+      id: produtos.length + 1,
       nome,
       valor,
       estoque,
@@ -303,8 +303,8 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
 // Método PUT para atualizar um produto existente
 export async function PUT(req: NextApiRequest, res: NextApiResponse) {
-  const { _id } = req.query
-  const idNumber = Number(_id)
+  const { id } = req.query
+  const idNumber = Number(id)
 
   try {
     const { nome, valor, estoque } = req.body
@@ -314,7 +314,7 @@ export async function PUT(req: NextApiRequest, res: NextApiResponse) {
     let produtos = produtosCache ? JSON.parse(produtosCache) : []
 
     // Encontrando o produto pelo ID
-    const produtoIndex = produtos.findIndex((e: any) => e._id === idNumber)
+    const produtoIndex = produtos.findIndex((e: any) => e.id === idNumber)
     if (produtoIndex === -1) {
       return res.status(404).json({ message: 'Produto não encontrado' })
     }

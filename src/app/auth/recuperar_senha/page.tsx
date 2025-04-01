@@ -76,9 +76,31 @@ export default function Pagina() {
   }
  
   return (
+    <>
+      <div className="top-bar">
+        <div className="logo">Electronic's Place</div>
+        <div className="user-area">
+          <a href="/carrinho">
+            <img className="button-img button-img2" />
+          </a>
+          <a href="/login">
+            <img className="button-img button-img1" />
+          </a>
+        </div>
+      </div>
     <form onSubmit={handleSubmit}>
-      <input type="email" name="email" placeholder="email" required autoFocus/>
-      <button type="submit">Solicitar nova senha</button>
+    <div id="login-container">
+      <h2 className="h3 mb-3 fw-normal text-center">Recuperar senha</h2>
+      <div className="form-floating mb-2">
+        <input type="email" name="login" className="form-control" id="floatingInput" placeholder=""/>
+        <label htmlFor="floatingInput">Email address</label>
+      </div>
+      <button className="btn btn-primary w-100 py-2" type="submit">Enviar</button>
+      </div>  
     </form>
+    </>
   )
 }
+      {/*  
+      <input type="email" name="email" placeholder="email" required autoFocus/>
+      <button type="submit">Solicitar nova senha</button> */}

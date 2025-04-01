@@ -521,6 +521,18 @@ button {
    color: white;
 }
 
+.adicionar {
+  background-color: rgb(0, 179, 0);
+  width:170px;
+  height:30px;
+  border: 2px solid rgb(33, 192, 1);
+  color: white;
+}
+
+.adicionar:hover {
+  background-color: rgb(3, 133, 3);
+}
+
 .display {
   display: flex;
 }
@@ -556,4 +568,11 @@ button {
 
 .lista {
   gap: 20px;
+}
+
+.tamanho {
+  display: block;
+  gap:20px;
+  text-align: center;
+  justify-items: center;
 }

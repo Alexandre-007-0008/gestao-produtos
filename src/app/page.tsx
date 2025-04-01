@@ -127,14 +127,6 @@ export default function Home() {
   useEffect(() => {
     carregarDados() // Carrega os dados ao montar o componente
   }, [])
-
-  // Função para remover um produto
-  const removerProduto = async (_id: number | string) => {
-    await axios.delete(`http://localhost:3000/api/v1/produtos/${_id}`)
-    carregarDados() // Recarrega os dados após a remoção
-    redirect('/produtos') // Redireciona para a página de produtos após a remoção
-  }
-
   return (
     <>
       <div className="top-bar">
@@ -180,15 +172,16 @@ export default function Home() {
 {/* dilema: a imagem quando pesquisa n aparece ou o contrário */}
         <div className="produto-central">
           {produtos.map((p: ProdutoType, index) => (
-            <div key={p._id || index} className="produto-card">
-              <a href={`/produtos/${p._id}`}>
-                <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
-              </a>
+             <div key={p.id || index} className="produto-card">
+            {/* //   <a href={`/produtos/${p.id}`}>
+            //     <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
+            //   </a> */}
+              <a href={`/produtos/${p.id}`}><img src={p.img || `/imagens/produto${p.id}.png`} alt={p.name}/></a>
               <div className="flex">
-                <p className="produto-nome">R${p.valor}</p>
                 <p className="produto-nome">{p.name}</p>
-                <p>Quantidade: {p.qtde}</p>
+                <p className="produto-nome">R${p.valor}</p>
               </div>
+             
             </div>
           ))}
         </div>

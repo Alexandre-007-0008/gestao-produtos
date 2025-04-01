@@ -40,7 +40,7 @@
 // }
 'use client'
 import { FormEvent } from 'react'
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
@@ -79,10 +79,40 @@ export default function Pagina() {
   }
  
   return (
+    <>
+      <div className="top-bar">
+        <div className="logo">Electronic's Place</div>
+        <div className="user-area">
+          <a href="/carrinho">
+            <img className="button-img button-img2" />
+          </a>
+          <a href="/login">
+            <img className="button-img button-img1" />
+          </a>
+        </div>
+      </div>
     <form onSubmit={handleSubmit}>
-      <input type="password" name="senha" placeholder="Sua nova senha" required autoFocus />
-      <input type="password" name="confirmacao_senha" placeholder="Confirme sua senha" required/>
-      <button type="submit">Alterar senha</button>
+    <div id="login-container">
+      <h2 className="h3 mb-3 fw-normal text-center">Nova senha</h2>
+
+      <div className="form-floating mb-2">
+        <input type="password"  name="senha" className="form-control" id="floatingPassword" placeholder=""/>
+        <label htmlFor="floatingPassword">Senha Atual</label>
+      </div>
+          
+      <div className="form-floating mb-2">
+        <input type="password"  name="senha" className="form-control" id="floatingPassword" placeholder=""/>
+        <label htmlFor="floatingPassword"> Nova Senha</label>
+      </div>
+
+      <div className="form-floating mb-2">
+        <input type="password"  name="senha" className="form-control" id="floatingPassword" placeholder=""/>
+        <label htmlFor="floatingPassword">Confirme a Nova Senha</label>
+      </div>
+      <button className="btn btn-primary w-100 py-2" type="submit">Enviar</button>
+      </div>  
     </form>
+  
+    </>
   )
 }
