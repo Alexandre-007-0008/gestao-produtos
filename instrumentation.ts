@@ -1,7 +1,9 @@
-// import Usuario from '@/db/models/usuario'
-// import bcrypt from 'bcrypt'
+import Usuario from '@/app/db/models/usuario'
+import bcrypt from 'bcrypt'
 
 console.log("iniciando instrumentations.ts")
+
+//comentar depois de executar uma vez, ele serve apenas pra criar o usuário. Deve-se comentar pra ele não dar erro
 
 // Usuario.findOne({
 //     login: 'admin'
@@ -12,7 +14,7 @@ console.log("iniciando instrumentations.ts")
 //             Usuario.create({
 //                 login: 'admin',
 //                 senha: hash,
-//                 email: 'lucianonobremoreira@gmail.com'
+//                 email: 'xandeif.2007@gmail.com'
 //             })
 //         });
 //     }

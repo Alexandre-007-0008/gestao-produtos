@@ -15,24 +15,25 @@
 
 // export default Produto
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+
+
+// interface Produto {
+//   _id: string;
+//   id: number; 
+//   name: string;
+//   valor: number;
+//   qtde: number;
+//   img: string; 
+//   imageId: number;
+//   // ... outras propriedades
+// }
+
+
+// interface ProdutoQuery extends Query<Produto[], Document> {
+//   _startTime?: number;
+// }
 import mongoose from '@/app/db/mongodb'
-import { Document, Query } from 'mongoose';
-
-interface Produto {
-  _id: string;
-  id: number; 
-  name: string;
-  valor: number;
-  qtde: number;
-  img: string; 
-  imageId: number;
-  // ... outras propriedades
-}
-
-
-interface ProdutoQuery extends Query<Produto[], Document> {
-  _startTime?: number;
-}
 const ProdutoSchema = new mongoose.Schema({
     id: { type: String, required: true},
     name: { type: String, required: true, index: true },
@@ -46,16 +47,16 @@ const ProdutoSchema = new mongoose.Schema({
   }
 )
 
-ProdutoSchema.pre<ProdutoQuery>(/^find/, function (next) {
-  this._startTime = Date.now();
-  next();
-});
+// ProdutoSchema.pre<ProdutoQuery>(/^find/, function (next) {
+//   this._startTime = Date.now();
+//   next();
+// });
 
-ProdutoSchema.post<ProdutoQuery>(/^find/, function (docs, next) {
-  const duration = Date.now() - this._startTime!;
-  console.log(`Consulta demorou ${duration}ms`);
-  next();
-});
+// ProdutoSchema.post<ProdutoQuery>(/^find/, function (docs, next) {
+//   const duration = Date.now() - this._startTime!;
+//   console.log(`Consulta demorou ${duration}ms`);
+//   next();
+// });
 
 
 const Produto = mongoose.models.Produto || mongoose.model('Produto', ProdutoSchema)

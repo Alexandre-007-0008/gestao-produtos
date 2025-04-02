@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IPedido extends Document {
   usuarioId: string; // ID do usuário que fez o pedido
