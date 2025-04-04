@@ -34,18 +34,26 @@
 //   _startTime?: number;
 // }
 import mongoose from '@/app/db/mongodb'
+
 const ProdutoSchema = new mongoose.Schema({
-    id: { type: String, required: true},
+    // id: { type: String, required: true},
     name: { type: String, required: true, index: true },
     valor: { type: Number, required: false },
-    qtde: { type: Number, required: false },
-    img: { type: String },
-    imageId: { type: Number }
+    // qtde: { type: Number, required: false },
+    // img: { type: String },
+    // imageId: { type: Number }
   },
   {
     versionKey: false
   }
 )
+
+
+const Produto = mongoose.models.Produto || mongoose.model('Produto', ProdutoSchema)
+
+export default Produto
+
+
 
 // ProdutoSchema.pre<ProdutoQuery>(/^find/, function (next) {
 //   this._startTime = Date.now();
@@ -57,9 +65,3 @@ const ProdutoSchema = new mongoose.Schema({
 //   console.log(`Consulta demorou ${duration}ms`);
 //   next();
 // });
-
-
-const Produto = mongoose.models.Produto || mongoose.model('Produto', ProdutoSchema)
-
-export default Produto
-

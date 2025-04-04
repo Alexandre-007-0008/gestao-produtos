@@ -79,6 +79,7 @@ import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import "./globals.css"
+import Link from 'next/link'
 
 export default function Home() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([]) // Estado para armazenar os produtos
@@ -149,9 +150,13 @@ export default function Home() {
           onChange={handleSearch} // Chama a função de pesquisa quando o valor mudar
         />
       </div>
-
+      <hr></hr>
+      <button className="comprar">
+      <Link href="/cadastrar/produtos">Cadastrar Produto</Link>
+      </button>
+{/* 
       {loading && <p>Carregando produtos...</p>}
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>} */}
 
       {/* <table>
         <tbody className="lista">
@@ -171,17 +176,16 @@ export default function Home() {
       </table> */}
 {/* dilema: a imagem quando pesquisa n aparece ou o contrário */}
         <div className="produto-central">
+          <p>Produtos cadastrados:</p>
           {produtos.map((p: ProdutoType, index) => (
-             <div key={p.id || index} className="produto-card">
-            {/* //   <a href={`/produtos/${p.id}`}>
-            //     <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
-            //   </a> */}
-              <a href={`/produtos/${p.id}`}><img src={p.img || `/imagens/produto${p.id}.png`} alt={p.name}/></a>
-              <div className="flex">
-                <p className="produto-nome">{p.name}</p>
-                <p className="produto-nome">R${p.valor}</p>
+             <div key={p._id || index} className="produto-card">
+              <div>
+                <ul>
+                  <li>
+                      <p className="produto-nome">{p.name}  R${p.valor}</p>
+                  </li>
+                </ul>
               </div>
-             
             </div>
           ))}
         </div>

@@ -159,6 +159,7 @@
 import axios from 'axios';
 import { ProdutoType } from '../types';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Dashboard() {
   const [qtde, setQtde] = useState<number>(0);
@@ -208,12 +209,10 @@ export default function Dashboard() {
         <div className="search-container">
           <input type="text" placeholder="Pesquisar..." />
         </div>
+        <Link href="/cadastrar/produtos">Cadastrar Produto</Link>
         <div className="produto-central">
           {produtos.map((p: ProdutoType, index) => (
             <div key={p._id || index} className="produto-card">
-              <a href={`/produtos/${p._id}`}>
-                <img src={p.img || `/imagens/produto${p._id}.png`} alt={p.name} />
-              </a>
               <div className="flex">
                 <p className="produto-nome">R${p.valor}</p>
                 <p className="produto-nome">{p.name}</p>

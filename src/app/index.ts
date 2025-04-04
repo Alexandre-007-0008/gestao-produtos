@@ -65,7 +65,7 @@
 //   console.log(`API está ouvindo em http://localhost:${PORTA}`)
 // })
 
-
+// bsbaadbjdk
 const jwt = require("jsonwebtoken");
 
 // Essa chave deve ser armazenada em locais seguros, nunca diretamente no código

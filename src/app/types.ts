@@ -6,12 +6,12 @@ export type UserType = {
 
 export type ProdutoType = {
     _id: string  //perguntar a Luciano o motivo disso(reclamou do number e aceitou undefined)
-    id: number
+    // id: number
     name: string
     valor?: number
-    qtde?: number
-    img: string
-    imageId: number
+    // qtde?: number
+    // img: string
+    // imageId: number
     // description: string dá pra usar isso(descrição do produto)
 }
 

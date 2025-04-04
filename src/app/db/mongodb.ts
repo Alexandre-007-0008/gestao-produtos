@@ -100,13 +100,40 @@
 // export default ConnectOptions;
 
 
-import mongoose from 'mongoose' //esse é a conexão (o produto, usuario e etc. vão usar essa conexão)
+// import mongoose from 'mongoose' //esse é a conexão (o produto, usuario e etc. vão usar essa conexão)
 
-mongoose.connect(
-  process.env.MONGODB_URL || 'mongodb://localhost:27017/led'
-).then(() => console.log("MongoDB conectado!"))
-.catch(err => console.error("Erro ao conectar:", err))
+// mongoose.connect(
+//   process.env.MONGODB_URL || 'mongodb://localhost:27017/led'
+// ).then(() => console.log("MongoDB conectado!"))
+// .catch(err => console.error("Erro ao conectar:", err))
 
-mongoose.set('debug', true)
+// mongoose.set('debug', true)
+
+// export default mongoose;
+
+import mongoose from "mongoose";
+
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/led";
+
+export const connectDB = async () => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      console.log("⚡ Já conectado ao MongoDB!");
+      return;
+    }
+
+    console.log("⏳ Conectando ao MongoDB...");
+    await mongoose.connect(MONGO_URI, {
+      dbName: "led",
+    });
+
+    console.log("✅ Conectado ao MongoDB com sucesso!");
+  } catch (error) {
+    console.error("❌ Erro ao conectar ao MongoDB:", error);
+    // process.exit(1); // Para evitar que a aplicação continue rodando sem banco de dados
+    throw new Error("Erro crítico: falha na conexão com o MongoDB");
+
+  }
+};
 
 export default mongoose;

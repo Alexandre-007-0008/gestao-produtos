@@ -438,12 +438,16 @@ button {
 }
 
 .produto-central {
-  display: flex;
+  display:block;
+  gap:20px;
+  margin-top: 100px;
+  margin-left: 110px;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
   margin-top: 100px;
-  margin-left: 110px;
+  margin-left: 110px; */
 }
 
 /* Cada produto será um card responsivo */
@@ -509,10 +513,10 @@ button {
 
 .comprar {
   background-color: rgb(255, 255, 255);
-  width:100px;
+  width:170px;
   height:30px;
   border: 2px solid rgb(33, 192, 1);
-
+  border-radius: 50px;
 }
 
 .comprar:hover {
@@ -527,6 +531,7 @@ button {
   height:30px;
   border: 2px solid rgb(33, 192, 1);
   color: white;
+  border-radius: 50px;
 }
 
 .adicionar:hover {
@@ -537,11 +542,6 @@ button {
   display: flex;
 }
 
-/* nome e valor na página /produtos */
-.flex {
-  display: flex;
-  gap: 10px;
-}
 
 .bottom-bar {
   background-color: var(--cor-bottom);
