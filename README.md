@@ -43,3 +43,11 @@ Visite Network Access para modificar suas configurações.
 
 esses são os produtos que estão no banco, ou seja, nenhum.  
 Lista de Produtos: []
+
+
+# Como rodar a aplicação: 
+1º - descomente o código do instrumentations
+2ª - Rode "npm run dev"
+3ª - Deve criar as collections "produtos" e "usuarios"
+4º - Derrube a aplicação e rode o nom run dev novamente
+5º - Cadastre um produto e confira se deu certo
